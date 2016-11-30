@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://Jxisme520.github.io/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://Jxisme520.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-jQuery-extend" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/30/jQuery-extend/" class="article-date">
+  <time datetime="2016-11-30T00:49:27.000Z" itemprop="datePublished">2016-11-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/默认分类/">默认分类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/30/jQuery-extend/">jQuery.extend()源码解析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h2 id="1-变量的含义："><a href="#1-变量的含义：" class="headerlink" title="1.变量的含义："></a>1.变量的含义：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var target</div><div class="line">    ,options /* 指向源对象 */</div><div class="line">    ,name,   /*  键名 */</div><div class="line">    ,i = 1   /* 指向的源对象在arguments中的索引 */</div><div class="line">    ,length = arguments.length /* 参数的个数 */</div><div class="line">    ,deep = false   /* 标志是否深拷贝,没有boolean值的时候默认为flase，浅复制 */</div><div class="line">    ,src     /* 存储target对象的当前属性 */</div><div class="line">    ,copy    /* 存储源对象当前属性的值 */</div><div class="line">    ,target = arguments[0] || &#123;&#125; /* 过滤掉undefined 和 null */</div><div class="line">    ,clone;  /* 深复制时候存放target[name]值 */</div><div class="line">    ,copyIsArray; /* 存放一个标志，表示源对象当前属性值是否是数组 */</div></pre></td></tr></table></figure>
+<h2 id="2-if代码块1：extend函数提供用户指定是否深拷贝的功能通过在第一个参数传递boolean值，检测函数第一个值是否是boolean值。"><a href="#2-if代码块1：extend函数提供用户指定是否深拷贝的功能通过在第一个参数传递boolean值，检测函数第一个值是否是boolean值。" class="headerlink" title="2.if代码块1：extend函数提供用户指定是否深拷贝的功能通过在第一个参数传递boolean值，检测函数第一个值是否是boolean值。"></a>2.if代码块1：extend函数提供用户指定是否深拷贝的功能通过在第一个参数传递boolean值，检测函数第一个值是否是boolean值。</h2><pre><code>2.1. 第一个参数是boolean时候执行。
+
+2.2. 第一个参数是boolean类型即是target的指向错了,i指向也错了，必须进行修改，并且重置deep标志。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/* 1.第一个参数是boolean时候执行，</div><div class="line">   2.第一个参数是boolean类型即是target的指向错了,i指向也错了，必须进行修改，并且重置deep标志</div><div class="line">*/</div><div class="line"></div><div class="line">if ( typeof target === &quot;boolean&quot; ) &#123;</div><div class="line">    deep = target;</div><div class="line">    target = arguments[1] || &#123;&#125;; /* 过滤第2个参数值为undefined,null */</div><div class="line">    i = 2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="3-if代码块2：因为js中对那些不是对象不是函数的值设置属性方法是无效的-这里过滤这些值，保证target指向一个可以设置属性的对象。"><a href="#3-if代码块2：因为js中对那些不是对象不是函数的值设置属性方法是无效的-这里过滤这些值，保证target指向一个可以设置属性的对象。" class="headerlink" title="3.if代码块2：因为js中对那些不是对象不是函数的值设置属性方法是无效的,这里过滤这些值，保证target指向一个可以设置属性的对象。"></a>3.if代码块2：因为js中对那些不是对象不是函数的值设置属性方法是无效的,这里过滤这些值，保证target指向一个可以设置属性的对象。</h2><pre><code>3.1. if语句：满足target不是对象也不是函数时执行。
+
+3.2. 满足条件的target值有可能是以字面量方式创建的boolean,number,string。
+
+3.3. 不会出现target值为undefined和null，前面初始化时候已经过滤。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if ( typeof target !== &quot;object&quot; &amp;&amp; !jQuery.isFunction(target) ) &#123;</div><div class="line">    target = &#123;&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="4-if代码块3：extend-函数实现了当传入的参数有效对象个数不足够赋值给target和源对象时，默认将target指向自身。"><a href="#4-if代码块3：extend-函数实现了当传入的参数有效对象个数不足够赋值给target和源对象时，默认将target指向自身。" class="headerlink" title="4.if代码块3：extend()函数实现了当传入的参数有效对象个数不足够赋值给target和源对象时，默认将target指向自身。"></a>4.if代码块3：extend()函数实现了当传入的参数有效对象个数不足够赋值给target和源对象时，默认将target指向自身。</h2><pre><code>4.1. arguments长度等于i的值得时候，表示target = arguments[arguments.length-1],
+这时候的源对象是arguments[arguments.length] = undefined，显然这是没意义的。
+
+4.2. jQuery在出现这种情况时，将target对象设置为自身，然后修改i指向target原先的指向。
+
+4.3. 我们可以通过这个方法对jQuery进行扩展。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if ( length === i ) &#123;</div><div class="line">target = this;</div><div class="line">--i;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="5-for代码块，实现target对象扩展，从第一个源对象开始遍历arguments。"><a href="#5-for代码块，实现target对象扩展，从第一个源对象开始遍历arguments。" class="headerlink" title="5.for代码块，实现target对象扩展，从第一个源对象开始遍历arguments。"></a>5.for代码块，实现target对象扩展，从第一个源对象开始遍历arguments。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">for ( ; i &lt; length; i++ ) &#123;</div><div class="line"></div><div class="line">    /* 以上我们已经将arguments中的项过滤到target指向，以下if在源对象值为undefiend和null时进行过滤*/</div><div class="line">    </div><div class="line">    if ( (options = arguments[ i ]) != null ) &#123;</div><div class="line">        for ( name in options ) &#123;</div><div class="line">            src = target[ name ];</div><div class="line">            copy = options[ name ];</div><div class="line">            </div><div class="line">            /* 为了避免在递归深拷贝过程中，出现了无限循环:(看后面代码片1，2)</div><div class="line">               1.向extend()方法传入的源对象拥有属性值为目标对象，并且目标对象中有属性引用了目标对象本身，</div><div class="line">               2.源对象的属性引用了源对象自身*/</div><div class="line">               </div><div class="line">            if ( target === copy ) &#123;</div><div class="line">                continue;</div><div class="line">            &#125;</div><div class="line">        </div><div class="line">            /* 判断是否满足深拷贝的条件：</div><div class="line">            1.deep标志为true,</div><div class="line">            2.源对象当前属性(name)的值存在,</div><div class="line">            3.源对象当前属性值是数组,&#123;&#125;或者是由Object创建的对象*/</div><div class="line">            </div><div class="line">            if ( deep &amp;&amp; copy &amp;&amp; ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) &#123;</div><div class="line">            </div><div class="line">                /* copyIsArray 是标示源对象当前属性值是否是数组，通过这个标志分别对源对象当前属性</div><div class="line">                值为对象和源对象当前属性值为数组的情况分开处理*/</div><div class="line">                </div><div class="line">                if ( copyIsArray ) &#123;</div><div class="line">                </div><div class="line">                    /* 如果不设置为false,下一次既使满足深拷贝的条件进入后，如果源对象当前属性值为对象，会按照数组进行处理*/</div><div class="line">                    copyIsArray = false;</div><div class="line">                    </div><div class="line">                    /* clone存放了target[name]的值，值的如果不存在或者类型不是数组时，将其赋值空数组，否则值不改变 */</div><div class="line">                    clone = src &amp;&amp; jQuery.isArray(src) ? src : [];</div><div class="line">                    </div><div class="line">                    &#125; else &#123;</div><div class="line">                    clone = src &amp;&amp; jQuery.isPlainObject(src) ? src : &#123;&#125;;</div><div class="line">                    &#125;</div><div class="line">                    </div><div class="line">                    /* 递归调用extend进行深拷贝*/</div><div class="line">                    target[ name ] = jQuery.extend( deep, clone, copy );</div><div class="line">                    </div><div class="line">                    /* 过滤源对象属性值为undefined的属性,没有过滤属性值为null的属性，看以下代码片3*/</div><div class="line">                &#125; else if ( copy !== undefined ) &#123;</div><div class="line">                    target[ name ] = copy;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /* 返回修改后的对象*/</div><div class="line">    return target;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="6-代码片1"><a href="#6-代码片1" class="headerlink" title="6.代码片1"></a>6.代码片1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/* 1.target对象属性值引用自身，并且original对象的属性引用target,注释if(target == copy)中的continue后无限循环最后</div><div class="line">报错*/</div><div class="line">/* 2.错误信息：Uncaught RangeError: Maximum call stack size exceeded(超过最大调用堆栈内存)*/</div><div class="line">var target = &#123;&#125;;</div><div class="line">target.proper = target;</div><div class="line">var original = &#123;&#125;;</div><div class="line">original.proper = target;</div><div class="line">$.extend(true,target,original);</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161124164948908" alt="注释continue"><br><img src="http://img.blog.csdn.net/20161124164857606" alt="运行结果"></p>
+<h2 id="7-代码片2"><a href="#7-代码片2" class="headerlink" title="7.代码片2"></a>7.代码片2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> /*bug:</div><div class="line"> 2.original对象存在属性引用其自身,报错信息和上面一致 */</div><div class="line">var target = &#123;&#125;;</div><div class="line">target.proper = &apos;属性&apos;;</div><div class="line">var original = &#123;&#125;;</div><div class="line">original.proper = original;</div><div class="line">console.log($.extend(true,target,original));</div></pre></td></tr></table></figure>
+<h2 id="8-代码片3"><a href="#8-代码片3" class="headerlink" title="8.代码片3"></a>8.代码片3</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/* 过滤掉属性值为undefiend的属性，没过滤属性值为null的属性，可以测试以下代码：可以修改copy!= undefined来实现过滤null*/</div><div class="line">var target = &#123;&#125;</div><div class="line">var original = &#123;</div><div class="line">   name: null</div><div class="line">&#125;</div><div class="line">console.log($.extend(target,original));</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://Jxisme520.github.io/2016/11/30/jQuery-extend/" data-id="ciw49xazv00015idjwcah7mma" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extend/">extend()</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码/">源码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/解析/">解析</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/默认分类/">默认分类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/extend/">extend()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/源码/">源码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解析/">解析</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/extend/" style="font-size: 10px;">extend()</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/解析/" style="font-size: 10px;">解析</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/30/jQuery-extend/">jQuery.extend()源码解析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
