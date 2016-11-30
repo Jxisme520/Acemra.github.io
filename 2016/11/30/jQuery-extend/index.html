@@ -5,18 +5,21 @@
   
   <title>jQuery.extend()源码解析 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.变量的含义：1234567891011var target    ,options /* 指向源对象 */    ,name,   /*  键名 */    ,i = 1   /* 指向的源对象在arguments中的索引 */    ,length = arguments.length /* 参数的个数 */    ,deep = false   /* 标志是否深拷贝,没有boolean值的">
+  <meta name="description" content="[TOC]
+1.变量的含义：1234567891011var target    ,options /* 指向源对象 */    ,name,   /*  键名 */    ,i = 1   /* 指向的源对象在arguments中的索引 */    ,length = arguments.length /* 参数的个数 */    ,deep = false   /* 标志是否深拷贝,没有boo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery.extend()源码解析">
 <meta property="og:url" content="http://Jxisme520.github.io/2016/11/30/jQuery-extend/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.变量的含义：1234567891011var target    ,options /* 指向源对象 */    ,name,   /*  键名 */    ,i = 1   /* 指向的源对象在arguments中的索引 */    ,length = arguments.length /* 参数的个数 */    ,deep = false   /* 标志是否深拷贝,没有boolean值的">
+<meta property="og:description" content="[TOC]
+1.变量的含义：1234567891011var target    ,options /* 指向源对象 */    ,name,   /*  键名 */    ,i = 1   /* 指向的源对象在arguments中的索引 */    ,length = arguments.length /* 参数的个数 */    ,deep = false   /* 标志是否深拷贝,没有boo">
 <meta property="og:image" content="http://img.blog.csdn.net/20161124164948908">
 <meta property="og:image" content="http://img.blog.csdn.net/20161124164857606">
-<meta property="og:updated_time" content="2016-11-30T01:06:08.000Z">
+<meta property="og:updated_time" content="2016-11-30T01:09:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery.extend()源码解析">
-<meta name="twitter:description" content="1.变量的含义：1234567891011var target    ,options /* 指向源对象 */    ,name,   /*  键名 */    ,i = 1   /* 指向的源对象在arguments中的索引 */    ,length = arguments.length /* 参数的个数 */    ,deep = false   /* 标志是否深拷贝,没有boolean值的">
+<meta name="twitter:description" content="[TOC]
+1.变量的含义：1234567891011var target    ,options /* 指向源对象 */    ,name,   /*  键名 */    ,i = 1   /* 指向的源对象在arguments中的索引 */    ,length = arguments.length /* 参数的个数 */    ,deep = false   /* 标志是否深拷贝,没有boo">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20161124164948908">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -88,7 +91,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-变量的含义："><a href="#1-变量的含义：" class="headerlink" title="1.变量的含义："></a>1.变量的含义：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var target</div><div class="line">    ,options /* 指向源对象 */</div><div class="line">    ,name,   /*  键名 */</div><div class="line">    ,i = 1   /* 指向的源对象在arguments中的索引 */</div><div class="line">    ,length = arguments.length /* 参数的个数 */</div><div class="line">    ,deep = false   /* 标志是否深拷贝,没有boolean值的时候默认为flase，浅复制 */</div><div class="line">    ,src     /* 存储target对象的当前属性 */</div><div class="line">    ,copy    /* 存储源对象当前属性的值 */</div><div class="line">    ,target = arguments[0] || &#123;&#125; /* 过滤掉undefined 和 null */</div><div class="line">    ,clone;  /* 深复制时候存放target[name]值 */</div><div class="line">    ,copyIsArray; /* 存放一个标志，表示源对象当前属性值是否是数组 */</div></pre></td></tr></table></figure>
+        <p>[TOC]</p>
+<h2 id="1-变量的含义："><a href="#1-变量的含义：" class="headerlink" title="1.变量的含义："></a>1.变量的含义：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var target</div><div class="line">    ,options /* 指向源对象 */</div><div class="line">    ,name,   /*  键名 */</div><div class="line">    ,i = 1   /* 指向的源对象在arguments中的索引 */</div><div class="line">    ,length = arguments.length /* 参数的个数 */</div><div class="line">    ,deep = false   /* 标志是否深拷贝,没有boolean值的时候默认为flase，浅复制 */</div><div class="line">    ,src     /* 存储target对象的当前属性 */</div><div class="line">    ,copy    /* 存储源对象当前属性的值 */</div><div class="line">    ,target = arguments[0] || &#123;&#125; /* 过滤掉undefined 和 null */</div><div class="line">    ,clone;  /* 深复制时候存放target[name]值 */</div><div class="line">    ,copyIsArray; /* 存放一个标志，表示源对象当前属性值是否是数组 */</div></pre></td></tr></table></figure>
 <h2 id="2-if代码块1：extend函数提供用户指定是否深拷贝的功能通过在第一个参数传递boolean值，检测函数第一个值是否是boolean值。"><a href="#2-if代码块1：extend函数提供用户指定是否深拷贝的功能通过在第一个参数传递boolean值，检测函数第一个值是否是boolean值。" class="headerlink" title="2.if代码块1：extend函数提供用户指定是否深拷贝的功能通过在第一个参数传递boolean值，检测函数第一个值是否是boolean值。"></a>2.if代码块1：extend函数提供用户指定是否深拷贝的功能通过在第一个参数传递boolean值，检测函数第一个值是否是boolean值。</h2><pre><code>2.1. 第一个参数是boolean时候执行。
 
 2.2. 第一个参数是boolean类型即是target的指向错了,i指向也错了，必须进行修改，并且重置deep标志。
@@ -114,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://Jxisme520.github.io/2016/11/30/jQuery-extend/" data-id="ciw48ffzf00017cdjf1i74cld" class="article-share-link">Share</a>
+      <a data-url="http://Jxisme520.github.io/2016/11/30/jQuery-extend/" data-id="ciw48jn4d000001djr03otem2" class="article-share-link">Share</a>
       
       
     </footer>
