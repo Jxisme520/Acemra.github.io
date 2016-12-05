@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>相册 | Hexo博客</title>
+  <title>jQuery 总体源码结构笔记 | Hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="图片来自instagram，正在加载中…">
-<meta property="og:type" content="website">
-<meta property="og:title" content="相册">
-<meta property="og:url" content="http://Jxisme520.github.io/instagram/index.html">
+  <meta name="description" content="简述jQuery总体结构，以及个人的一些理解，记下笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery 总体源码结构笔记">
+<meta property="og:url" content="http://Jxisme520.github.io/2016/12/05/jQuery-总体源码结构笔记/index.html">
 <meta property="og:site_name" content="Hexo博客">
-<meta property="og:description" content="图片来自instagram，正在加载中…">
-<meta property="og:updated_time" content="2016-11-30T05:11:44.000Z">
+<meta property="og:description" content="简述jQuery总体结构，以及个人的一些理解，记下笔记">
+<meta property="og:updated_time" content="2016-12-05T05:01:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="相册">
-<meta name="twitter:description" content="图片来自instagram，正在加载中…">
+<meta name="twitter:title" content="jQuery 总体源码结构笔记">
+<meta name="twitter:description" content="简述jQuery总体结构，以及个人的一些理解，记下笔记">
   
     <link rel="alternative" href="/atom.xml" title="Hexo博客" type="application/atom+xml">
   
@@ -40,7 +40,7 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -216,7 +216,13 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-instagram" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-jQuery-总体源码结构笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/05/jQuery-总体源码结构笔记/" class="article-date">
+      <time datetime="2016-12-05T04:59:18.000Z" itemprop="datePublished">2016-12-05</time>
+</a>
+    </div>
   
   <div class="article-inner">
     
@@ -227,7 +233,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      相册
+      jQuery 总体源码结构笔记
     </h1>
   
 
@@ -235,8 +241,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/jQuery/">jQuery</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/结构，源码/">结构，源码</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -244,44 +258,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta {
-        display: none;
-    }
-    #container .article .article-title {
-        padding-right: 0;
-    }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover {
-        border-left: none;
-    }
-    .article-title {
-        font-size: 1.6em
-    }
-    .article-meta {
-        display: none;
-    }
-    .article-entry hr {
-        margin: 0;
-    }
-    #container .article-info-post.article-info {
-      display: none;
-      }
-    #container .article .article-title {
-    padding: 0;
-    }
-</style>
-
-
-          
-        <p><div class="instagram" data-client-id="a0d4bd    ab154b4c689aff70602cb34a2c" data-user-id="438522285"><br><a href="http://instagram.com/litten225" target="_blank" class="open-ins">图片来自instagram，正在加载中…</a><br></div></p>
-<script src="/js/jquery.lazyload.js"></script>
-<script src="/js/instagram.js"></script>
+        <p>#jQuery 总体源码结构笔记</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">// 最外层是一个自调用函数</div><div class="line">( function()&#123;</div><div class="line">   // 声明一个jQuery构造函数</div><div class="line">   var jQuery = ( function()&#123;</div><div class="line">        // 将jQuery构造函数覆盖改成实例</div><div class="line">        var jQuery = function()&#123;</div><div class="line">            // 说明我们使用的jQuery对象并不是直接使用jQuery构造函数构造的，只是两者的原型一样而已</div><div class="line">            return new jQuery.fn.init();   </div><div class="line">        &#125;</div><div class="line">        // 将jQuery.prototype简写为jQuery.fn</div><div class="line">        jQuery.fn = jQuery.prototype = &#123;</div><div class="line">            constructor = jQuery,</div><div class="line">            // 初始化jQuery对象</div><div class="line">            init: function()&#123;...&#125;</div><div class="line">        &#125;</div><div class="line">        // 构造jQuery实例的时候重新制定了init函数的原型</div><div class="line">        jQuery.fn.init.prototype = jQuery.fn;</div><div class="line">        jQuery.extend = jQuery.fn.extend = function()&#123;...&#125;;</div><div class="line">        jQuery.extend(&#123;...&#125;);</div><div class="line">        return jQuery;</div><div class="line">   &#125; )();</div><div class="line">   // 添加全局变量$和jQuery,两者都是一个实例，并不是构造函数</div><div class="line">    window.jQuery = window.$ = jQuery;  </div><div class="line">&#125; )(window);</div></pre></td></tr></table></figure>
+<p>总结： 1.在函数jQuery()函数内部使用new创建一个实例；<br>       2.jQuery实例不是直接有jQuery函数构造，而是通过一个init函数间接实现，为了不实例化jQuery函数中那些在内部使用的方法和属性；<br>       3.对一些太长的标识符进行简缩比如jQuery.fn,$;<br>       4.将jQuery实例付给全局变量jQuery<br>       5.传入window对象，变成局部变量，来缩短查找window对象时候搜索的作用域链长度</p>
 
       
     </div>
@@ -289,10 +268,67 @@
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/05/jQuery-总体源码结构笔记/">jQuery 总体源码结构笔记</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
+        <p><span>发布时间:</span>2016年12月05日 - 12时59分</p>
+        <p><span>最后更新:</span>2016年12月05日 - 13时01分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/05/jQuery-总体源码结构笔记/" title="jQuery 总体源码结构笔记">http://Jxisme520.github.io/2016/12/05/jQuery-总体源码结构笔记/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/05/jQuery-总体源码结构笔记/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2016/11/30/jQuery-extend/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jQuery.extend()源码解析</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
 
 
 
@@ -313,7 +349,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="instagram/index.html" data-title="相册" data-url="http://Jxisme520.github.io/instagram/index.html"></div>
+    <div class="ds-thread" data-thread-key="2016/12/05/jQuery-总体源码结构笔记/" data-title="jQuery 总体源码结构笔记" data-url="http://Jxisme520.github.io/2016/12/05/jQuery-总体源码结构笔记/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -333,6 +369,37 @@
     
 
 
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/11/30/jQuery-extend/" title="下一篇: jQuery.extend()源码解析">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/05/jQuery-总体源码结构笔记/">jQuery 总体源码结构笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/jQuery-extend/">jQuery.extend()源码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/jQuery-isPlain/">jQuery.isPlain()</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/">JavaScript var声明变量和直接用标识符初始化的细节</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/JavaScript-执行环境、作用域和作用域链/">理解JavaScript 作用域、执行环境和作用域链</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/05/JavaScript-逗号表达式/">JavaScript 逗号表达式笔记</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
 
 
 
