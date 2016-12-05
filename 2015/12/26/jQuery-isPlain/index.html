@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>jQuery.isPlain() | Hexo博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简述个人对isPlain()方法的使用，以及源码的理解，纯属笔记，如有出错还望指出。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery.isPlain()">
+<meta property="og:url" content="http://Jxisme520.github.io/2015/12/26/jQuery-isPlain/index.html">
+<meta property="og:site_name" content="Hexo博客">
+<meta property="og:description" content="简述个人对isPlain()方法的使用，以及源码的理解，纯属笔记，如有出错还望指出。">
+<meta property="og:image" content="http://img.blog.csdn.net/20161127141121031">
+<meta property="og:updated_time" content="2016-12-05T01:25:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery.isPlain()">
+<meta name="twitter:description" content="简述个人对isPlain()方法的使用，以及源码的理解，纯属笔记，如有出错还望指出。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161127141121031">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Acmera</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/tags/随笔">随笔</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=rJ_cmJ2fnZ2Vnezd3YLPw8E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/Jxisme520" title="github">github</a>
+                            
+                                <a class="fl QQ" target="_blank" href="#" title="QQ">QQ</a>
+                            
+                                <a class="fl wechat" target="_blank" href="#" title="wechat">wechat</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/extend/" style="font-size: 10px;">extend()</a> <a href="/tags/isPlain/" style="font-size: 10px;">isPlain()</a> <a href="/tags/jQuery/" style="font-size: 20px;">jQuery</a> <a href="/tags/内幕/" style="font-size: 10px;">内幕</a> <a href="/tags/源码/" style="font-size: 20px;">源码</a> <a href="/tags/解析/" style="font-size: 20px;">解析</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://jxisme520.github.io//">name</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱运动、爱交友、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Acmera</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Acmera</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/tags/随笔">随笔</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=rJ_cmJ2fnZ2Vnezd3YLPw8E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/Jxisme520" title="github">github</a>
+                    
+                        <a class="QQ" target="_blank" href="#" title="QQ">QQ</a>
+                    
+                        <a class="wechat" target="_blank" href="#" title="wechat">wechat</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-jQuery-isPlain" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/26/jQuery-isPlain/" class="article-date">
+      <time datetime="2015-12-25T18:29:00.000Z" itemprop="datePublished">2015-12-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jQuery.isPlain()
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/jQuery/">jQuery</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/isPlain/">isPlain()</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内幕/">内幕</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码/">源码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/解析/">解析</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>#jQuery.isPlainObject方法源码解析</p>
+<p>##1.简述函数功能：</p>
+<pre><code>--[官方描述](http://www.css88.com/jqapi-1.9/jQuery.isPlainObject/):测试一个对象是否是纯粹对象，但是
+结合代码测试，个人得出该方法是用于判断不存在属性值指向函数原型的对象或者是存在属性指向函数原型但是函数原型必须是
+Object.prototype,请看以下测试代码能够验证:
+
+1).什么是纯粹对象？即是通过{}或者new Object()方式创建的对象；
+
+2).a).noPrototype,ownNoPrototype是不具备属性指向函数原型的对象；
+
+   b).literal，hasPrototype，object,ownHasPrototype是具备属性指向Object.prototype的对象；
+
+   c).ownObject是具备属性指向自定义函数ownDef原型的对象，
+
+   d).ownConObject是constructor是自身属性的对象
+
+3).通过以下输出结果可以断定isPlainObject函数的功能的判断依据与对象使用什么方式创建无关，而是与对象是否没有属
+
+性指向原型，有属性指向函数原型的对象，它的函数原型是否是Object.prototype有关系；
+</code></pre><p>###测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">/*Object.create(null)，Object.create(Object.prototype),字面量&#123;&#125;，内置Object()</div><div class="line">    Object.create内部实现如下：</div><div class="line">    // 传入一个对象，作为F函数原型</div><div class="line">    function create(object) &#123;</div><div class="line">        function F()&#123;&#125;</div><div class="line">        F.prototype = object;</div><div class="line">        return new F();</div><div class="line">    &#125;</div><div class="line">*/</div><div class="line"></div><div class="line">var noPrototype = Object.create(null);</div><div class="line">console.log($.isPlainObject(noPrototype)); // true</div><div class="line"></div><div class="line">var literal = &#123;&#125;;</div><div class="line">console.log($.isPlainObject(literal)); // true</div><div class="line"></div><div class="line">var hasPrototype = Object.create(Object.prototype);</div><div class="line">console.log($.isPlainObject(hasPrototype)); // true</div><div class="line"></div><div class="line">var object = new Object();</div><div class="line">console.log($.isPlainObject(object)); // true</div><div class="line"></div><div class="line">// 自定义函数创建对象</div><div class="line">function ownDef() &#123;&#125;</div><div class="line">var ownObject = new ownDef();</div><div class="line">console.log($.isPlainObject(ownObject)); // false</div><div class="line"></div><div class="line">ownDef.prototype.isPrototypeOf = &apos;&apos;;</div><div class="line">var ownHasPrototype = new ownDef();</div><div class="line">console.log($.isPlainObject(ownHasPrototype)); // false</div><div class="line"></div><div class="line">ownDef.prototype.isPropertyOf = &apos;xxx&apos;;</div><div class="line">var owntransProtoProper = new ownDef();</div><div class="line">console.log($.isPlainObject(owntransProtoProper)); // false</div><div class="line"></div><div class="line">ownDef.prototype = null;</div><div class="line">var ownNoPrototype = new ownDef();</div><div class="line">console.log($.isPlainObject(ownNoPrototype)); // true</div><div class="line"></div><div class="line">ownDef.prototype = Object.prototype;</div><div class="line">var ownHasPrototype = new ownDef();</div><div class="line">console.log($.isPlainObject(ownHasPrototype)); // true</div><div class="line"></div><div class="line">function ownConstructor()&#123;</div><div class="line">    this.cunstructor = &apos;ownConstructor&apos;;</div><div class="line">&#125;</div><div class="line">var ownConObject =  new ownConstructor();</div><div class="line">console.log($.isPlainObject(ownConObject)); // true</div></pre></td></tr></table></figure></p>
+<p>##2.源码解析：</p>
+<pre><code>--整体思路：在js可编程区域object可能类型太多种了，比如：window(包含BOM对象)，DOM对象，js对象(内置对象，自
+
+定义函数创建对象，字面量,Object.create函数)，本函数的流程主要就是如何过滤掉不符合的对象。  
+</code></pre><p>###代码片1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/* a.!obj过滤了undefined和null;</div><div class="line">  b.jQuery.type(obj) !== &quot;object&quot;,过滤了不是内置对象创建的对象除了Object()函数创建的;</div><div class="line">   c.obj.nodeType,过滤DOM对象，因为每个DOM对象他的NodeType都存在且不为0;</div><div class="line">   d.jQuery.isWindow( obj ),过滤掉window对象</div><div class="line">if ( !obj || jQuery.type(obj) !== &quot;object&quot; || obj.nodeType || jQuery.isWindow( obj ) ) &#123;</div><div class="line">    return false;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###代码块2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">try &#123;</div><div class="line">    /* 上一步过滤之后就只剩下自定义函数，new Object()方法，Object.create()方法，三种方式创建的对象； </div><div class="line">    结合以上测试代码的对象流程图片分析：</div><div class="line">    </div><div class="line">        --流程图可以看出if()中每个条件筛选后的输出：</div><div class="line">        </div><div class="line">        a.obj.constructor用于筛选出没有constructor的对象一般由是自身没有constructor，并且没有属性指向原型(由</div><div class="line">        Object.create(null)创建比如：noPrototype或者其他原型为空得构造函数创建的比如：ownNoPrototype)</div><div class="line">        </div><div class="line">        b.!core_hasOwn.call(obj, &quot;constructor&quot;)用于筛选出有自身constructor属性的对象(一般是对对象的构造函数</div><div class="line">        自设置this.constructor = xxx;或者对象添加属性constructor如obj.constructor = xxx;)所以这里可能会出</div><div class="line">        现bug,使得原型不是Object.prototype的构造函数创建的对象在这里逃脱进入下面继续执行，个人觉得这个条件去掉才</div><div class="line">        能够筛选出需要的对象：没有属性指向原型的对象和有属性指向Object.prototype原型的对象；因为在后面的代码中没有</div><div class="line">        对这里逃脱的对象进行有效的处理(不知道jQuery设置这个条件的意义是什么);</div><div class="line"></div><div class="line">        c.!core_hasOwn.call(obj.constructor.prototype, &quot;isPrototypeOf&quot;)，用于筛选出对象有属性指向</div><div class="line">        Object.prototype原型的对象(一般是构造函数原型指向Object.porototype的对象，而原型不是</div><div class="line">        Object.prototyp的构造函数通过为原型添加isPrototypeOf属性的对象会逃脱，但是在后面代码块3会被过滤);</div><div class="line">    */</div><div class="line">    if ( obj.constructor &amp;&amp;</div><div class="line">        !core_hasOwn.call(obj, &quot;constructor&quot;) &amp;&amp;</div><div class="line">        !core_hasOwn.call(obj.constructor.prototype, &quot;isPrototypeOf&quot;) ) &#123;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125; catch ( e ) &#123;</div><div class="line">    // IE8,9 Will throw exceptions on certain host objects #9897 为了兼容IE</div><div class="line">    return false;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20161127141121031" alt="代码片2过滤流程"></p>
+<pre><code>###代码片3:
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">    /*</div><div class="line">        主要为了过滤原型不是Object.prototyp的构造函数通过为原型添加isPrototypeOf属性的对象比如：</div><div class="line">        owntransProtoProper对象，由于这种对象我们对他原型设置了对象，所以isPrototypeOf属性是可以枚举的，我</div><div class="line">        们只需要判断该对象的原型中是否有可枚举的属性来达到目的，有因为枚举属性总是从自身属性枚举到原型属性，所以</div><div class="line">        只需判断对象最后一个可枚举属性不是他原型属性；</div><div class="line">    */</div><div class="line">    var key;</div><div class="line">    // 这里是快速获取最后一个属性</div><div class="line">    for ( key in obj ) &#123;&#125;</div><div class="line">    return key === undefined || core_hasOwn.call( obj, key );</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/12/26/jQuery-isPlain/">jQuery.isPlain()</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
+        <p><span>发布时间:</span>2015年12月26日 - 02时29分</p>
+        <p><span>最后更新:</span>2016年12月05日 - 09时25分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/12/26/jQuery-isPlain/" title="jQuery.isPlain()">http://Jxisme520.github.io/2015/12/26/jQuery-isPlain/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2015/12/26/jQuery-isPlain/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/11/30/jQuery-extend/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          jQuery.extend()源码解析
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2015/12/26/jQuery-isPlain/" data-title="jQuery.isPlain()" data-url="http://Jxisme520.github.io/2015/12/26/jQuery-isPlain/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"acremra"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/11/30/jQuery-extend/" title="上一篇: jQuery.extend()源码解析">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/jQuery-extend/">jQuery.extend()源码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/jQuery-isPlain/">jQuery.isPlain()</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Acmera
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >访问次数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
