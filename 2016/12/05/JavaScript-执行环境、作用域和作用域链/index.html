@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>jQuery.isPlain() | Hexo博客</title>
+  <title>理解JavaScript 作用域、执行环境和作用域链 | Hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简述个人对isPlain()方法的使用，以及源码的理解，纯属笔记，如有出错还望指出。">
+  <meta name="description" content="作用域，执行环境和作用域链笔记，如有出错还望指出。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery.isPlain()">
-<meta property="og:url" content="http://Jxisme520.github.io/2015/12/26/jQuery-isPlain/index.html">
+<meta property="og:title" content="理解JavaScript 作用域、执行环境和作用域链">
+<meta property="og:url" content="http://Jxisme520.github.io/2016/12/05/JavaScript-执行环境、作用域和作用域链/index.html">
 <meta property="og:site_name" content="Hexo博客">
-<meta property="og:description" content="简述个人对isPlain()方法的使用，以及源码的理解，纯属笔记，如有出错还望指出。">
-<meta property="og:image" content="http://img.blog.csdn.net/20161127141121031">
-<meta property="og:updated_time" content="2016-12-05T01:25:01.000Z">
+<meta property="og:description" content="作用域，执行环境和作用域链笔记，如有出错还望指出。">
+<meta property="og:image" content="http://img.blog.csdn.net/20161124222046646">
+<meta property="og:updated_time" content="2016-12-05T01:54:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery.isPlain()">
-<meta name="twitter:description" content="简述个人对isPlain()方法的使用，以及源码的理解，纯属笔记，如有出错还望指出。">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20161127141121031">
+<meta name="twitter:title" content="理解JavaScript 作用域、执行环境和作用域链">
+<meta name="twitter:description" content="作用域，执行环境和作用域链笔记，如有出错还望指出。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161124222046646">
   
     <link rel="alternative" href="/atom.xml" title="Hexo博客" type="application/atom+xml">
   
@@ -218,11 +218,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-jQuery-isPlain" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-JavaScript-执行环境、作用域和作用域链" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/12/26/jQuery-isPlain/" class="article-date">
-      <time datetime="2015-12-25T18:29:00.000Z" itemprop="datePublished">2015-12-26</time>
+      <a href="/2016/12/05/JavaScript-执行环境、作用域和作用域链/" class="article-date">
+      <time datetime="2016-12-05T01:49:14.000Z" itemprop="datePublished">2016-12-05</time>
 </a>
     </div>
   
@@ -235,7 +235,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      jQuery.isPlain()
+      理解JavaScript 作用域、执行环境和作用域链
     </h1>
   
 
@@ -243,14 +243,10 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/jQuery/">jQuery</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/isPlain/">isPlain()</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内幕/">内幕</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码/">源码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/解析/">解析</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaSciprt/">JavaSciprt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/作用域/">作用域</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/作用域链/">作用域链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/执行环境/">执行环境</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -260,35 +256,44 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>#jQuery.isPlainObject方法源码解析</p>
-<p>##1.简述函数功能：</p>
-<pre><code>--[官方描述](http://www.css88.com/jqapi-1.9/jQuery.isPlainObject/):测试一个对象是否是纯粹对象，但是
-结合代码测试，个人得出该方法是用于判断不存在属性值指向函数原型的对象或者是存在属性指向函数原型但是函数原型必须是
-Object.prototype,请看以下测试代码能够验证:
+        <p>#理解JavaScript 作用域、执行环境和作用域链</p>
+<p>##执行环境：</p>
+<p>###1.包含一个代码无法访问的变量对象，只供浏览器访问,变量对象存储了环境中定义的变量和函数，执行环<br>境有两种：全局环境和局部环境（函数）<br>    1).执行流到达一个环境时，该环境会被推入环境栈中。</p>
+<p>   2).当环境中的代码执行完毕时，栈将其环境弹出，把控制权返回给之前的执行环境，环境销毁，环境中定义的变量和函<br>   数也被销毁。<br>   3).每个函数都有自己的执行环境，函数环境的变量对象是它的活动对象，该变量开始只有一个变量即是arguments对象</p>
+<p>##作用域链：<br>1.作用域链，其实就是环境栈中各个环境的变量对象组成的，以下代码结合图形：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function func1()&#123;</div><div class="line">    function func2()&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20161124222046646" alt="作用域链，变量作用域，执行环境，变量对象关系图"></p>
+<p>2.作用域链管理当前环境所能访问到的变量和函数的访问顺序，</p>
+<p>3.从作用域链的前端开始依次存放着从当前环境–上一级环境–…..–全局环境各个环境定义的变量和属性</p>
+<p>4.在声明或者访问变量会根据作用域链来寻找变量（标识符解析机制）:</p>
+<pre><code>1).访问时从作用域链前端开始搜索，直到匹配到符合的变量就停止，如果没有匹配值时会一直搜索完整个作用域链后停止，所以
+当前变量会被优先访问到
 
-1).什么是纯粹对象？即是通过{}或者new Object()方式创建的对象；
+2).声明变量其实就是在内存中为它开辟存储空间，为了节省内存，在当前环境声明一个变量时候，会先搜索作用域链看该变量是
+否存在，如果存在不再重复声明没新开辟存储空间，当变量已经被声明时，我们再次声明初始化变量会覆盖之前声明的变量的值的
+原因
+</code></pre><p>5.延长作用域链：《JavaScript高级程序设计第三版》说到延长作用域链的可以通过with和try-catch语句的catch块。</p>
+<pre><code>1).问题：with和try-catch语句的catch块通过在作用域链前端添加变量对象的方法来延长作用域链，而变量对象又是和执行
+环境有关，那么with,try-catch语句的catch块延长作用域链是否会进入自己的执行环境 ？
 
-2).a).noPrototype,ownNoPrototype是不具备属性指向函数原型的对象；
+   a).with(obj){}块向作用域链添加的变量对象包含了传进得对象obj的所有属性和方法,这也是在with中能够直接通过属性
+   标识符访问到属性而不需通过a.key方式的原因，请看以下代码片一：
 
-   b).literal，hasPrototype，object,ownHasPrototype是具备属性指向Object.prototype的对象；
+   -1- 从代码中知道在with通过var b = 1,和age = ‘17’方式定义的变量,**并且这两个变量标识符不等于a中属性标识符
+   **，在with结束后能在全局中访问到，说明他们并不是作为a的属性即不是向a中添加属性。
 
-   c).ownObject是具备属性指向自定义函数ownDef原型的对象，
+   -2- 由于变量总是存放在离他最近的执行环境的变量对象中，假设with进入一个新的执行环境并且创建一个变量对象供b和
+   age存储，且b和age的作用域是在with块中，但是with执行完环境被销毁，b和age是应被释放的，可结果却还能在全局访问
+   到，说明with块并没有进入一个新的执行环境，这也是为什么js中没有块级元素的原因吧。
 
-   d).ownConObject是constructor是自身属性的对象
+   -3- 在-1-中加粗的那句话其实就是说a中不存在标识符为b和age的属性；根据标识符搜索机制来解释这一过程，比如代码执
+   行到var b=1；这一句的时候，会先在作用域中搜索标识符为b的变量，由于在with添加的变量对象中没有找到以b为标识符
+   的变量，所以会继续在父环境的变量对象中搜索，没搜到就添加为新变量，搜索到就覆盖原来的值，可以对比var name = 
+   &apos;zhao&apos;;这一句，因为name变量和a中属性name标识符一样，所以执行完这一句代码后，输出a.name为&apos;zhao&apos;说明var 
+   name = &apos;zhao&apos;,只是覆盖了a.name的值。
 
-3).通过以下输出结果可以断定isPlainObject函数的功能的判断依据与对象使用什么方式创建无关，而是与对象是否没有属
-
-性指向原型，有属性指向函数原型的对象，它的函数原型是否是Object.prototype有关系；
-</code></pre><p>###测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">/*Object.create(null)，Object.create(Object.prototype),字面量&#123;&#125;，内置Object()</div><div class="line">    Object.create内部实现如下：</div><div class="line">    // 传入一个对象，作为F函数原型</div><div class="line">    function create(object) &#123;</div><div class="line">        function F()&#123;&#125;</div><div class="line">        F.prototype = object;</div><div class="line">        return new F();</div><div class="line">    &#125;</div><div class="line">*/</div><div class="line"></div><div class="line">var noPrototype = Object.create(null);</div><div class="line">console.log($.isPlainObject(noPrototype)); // true</div><div class="line"></div><div class="line">var literal = &#123;&#125;;</div><div class="line">console.log($.isPlainObject(literal)); // true</div><div class="line"></div><div class="line">var hasPrototype = Object.create(Object.prototype);</div><div class="line">console.log($.isPlainObject(hasPrototype)); // true</div><div class="line"></div><div class="line">var object = new Object();</div><div class="line">console.log($.isPlainObject(object)); // true</div><div class="line"></div><div class="line">// 自定义函数创建对象</div><div class="line">function ownDef() &#123;&#125;</div><div class="line">var ownObject = new ownDef();</div><div class="line">console.log($.isPlainObject(ownObject)); // false</div><div class="line"></div><div class="line">ownDef.prototype.isPrototypeOf = &apos;&apos;;</div><div class="line">var ownHasPrototype = new ownDef();</div><div class="line">console.log($.isPlainObject(ownHasPrototype)); // false</div><div class="line"></div><div class="line">ownDef.prototype.isPropertyOf = &apos;xxx&apos;;</div><div class="line">var owntransProtoProper = new ownDef();</div><div class="line">console.log($.isPlainObject(owntransProtoProper)); // false</div><div class="line"></div><div class="line">ownDef.prototype = null;</div><div class="line">var ownNoPrototype = new ownDef();</div><div class="line">console.log($.isPlainObject(ownNoPrototype)); // true</div><div class="line"></div><div class="line">ownDef.prototype = Object.prototype;</div><div class="line">var ownHasPrototype = new ownDef();</div><div class="line">console.log($.isPlainObject(ownHasPrototype)); // true</div><div class="line"></div><div class="line">function ownConstructor()&#123;</div><div class="line">    this.cunstructor = &apos;ownConstructor&apos;;</div><div class="line">&#125;</div><div class="line">var ownConObject =  new ownConstructor();</div><div class="line">console.log($.isPlainObject(ownConObject)); // true</div></pre></td></tr></table></figure></p>
-<p>##2.源码解析：</p>
-<pre><code>--整体思路：在js可编程区域object可能类型太多种了，比如：window(包含BOM对象)，DOM对象，js对象(内置对象，自
-
-定义函数创建对象，字面量,Object.create函数)，本函数的流程主要就是如何过滤掉不符合的对象。  
-</code></pre><p>###代码片1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/* a.!obj过滤了undefined和null;</div><div class="line">  b.jQuery.type(obj) !== &quot;object&quot;,过滤了不是内置对象创建的对象除了Object()函数创建的;</div><div class="line">   c.obj.nodeType,过滤DOM对象，因为每个DOM对象他的NodeType都存在且不为0;</div><div class="line">   d.jQuery.isWindow( obj ),过滤掉window对象</div><div class="line">if ( !obj || jQuery.type(obj) !== &quot;object&quot; || obj.nodeType || jQuery.isWindow( obj ) ) &#123;</div><div class="line">    return false;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>###代码块2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">try &#123;</div><div class="line">    /* 上一步过滤之后就只剩下自定义函数，new Object()方法，Object.create()方法，三种方式创建的对象； </div><div class="line">    结合以上测试代码的对象流程图片分析：</div><div class="line">    </div><div class="line">        --流程图可以看出if()中每个条件筛选后的输出：</div><div class="line">        </div><div class="line">        a.obj.constructor用于筛选出没有constructor的对象一般由是自身没有constructor，并且没有属性指向原型(由</div><div class="line">        Object.create(null)创建比如：noPrototype或者其他原型为空得构造函数创建的比如：ownNoPrototype)</div><div class="line">        </div><div class="line">        b.!core_hasOwn.call(obj, &quot;constructor&quot;)用于筛选出有自身constructor属性的对象(一般是对对象的构造函数</div><div class="line">        自设置this.constructor = xxx;或者对象添加属性constructor如obj.constructor = xxx;)所以这里可能会出</div><div class="line">        现bug,使得原型不是Object.prototype的构造函数创建的对象在这里逃脱进入下面继续执行，个人觉得这个条件去掉才</div><div class="line">        能够筛选出需要的对象：没有属性指向原型的对象和有属性指向Object.prototype原型的对象；因为在后面的代码中没有</div><div class="line">        对这里逃脱的对象进行有效的处理(不知道jQuery设置这个条件的意义是什么);</div><div class="line"></div><div class="line">        c.!core_hasOwn.call(obj.constructor.prototype, &quot;isPrototypeOf&quot;)，用于筛选出对象有属性指向</div><div class="line">        Object.prototype原型的对象(一般是构造函数原型指向Object.porototype的对象，而原型不是</div><div class="line">        Object.prototyp的构造函数通过为原型添加isPrototypeOf属性的对象会逃脱，但是在后面代码块3会被过滤);</div><div class="line">    */</div><div class="line">    if ( obj.constructor &amp;&amp;</div><div class="line">        !core_hasOwn.call(obj, &quot;constructor&quot;) &amp;&amp;</div><div class="line">        !core_hasOwn.call(obj.constructor.prototype, &quot;isPrototypeOf&quot;) ) &#123;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125; catch ( e ) &#123;</div><div class="line">    // IE8,9 Will throw exceptions on certain host objects #9897 为了兼容IE</div><div class="line">    return false;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><img src="http://img.blog.csdn.net/20161127141121031" alt="代码片2过滤流程"></p>
-<pre><code>###代码片3:
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">    /*</div><div class="line">        主要为了过滤原型不是Object.prototyp的构造函数通过为原型添加isPrototypeOf属性的对象比如：</div><div class="line">        owntransProtoProper对象，由于这种对象我们对他原型设置了对象，所以isPrototypeOf属性是可以枚举的，我</div><div class="line">        们只需要判断该对象的原型中是否有可枚举的属性来达到目的，有因为枚举属性总是从自身属性枚举到原型属性，所以</div><div class="line">        只需判断对象最后一个可枚举属性不是他原型属性；</div><div class="line">    */</div><div class="line">    var key;</div><div class="line">    // 这里是快速获取最后一个属性</div><div class="line">    for ( key in obj ) &#123;&#125;</div><div class="line">    return key === undefined || core_hasOwn.call( obj, key );</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+2).try-catch的catch块会新创建一个新的变量对象，包含的是被抛出的错误对象的声明；
+</code></pre><p>###代码片一<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var a  = &#123;name: &apos;zhang&apos;&#125;;</div><div class="line">   with(a)&#123;</div><div class="line">        var b = 1;</div><div class="line">        console.log(a.b);// undefined</div><div class="line">        var name = &apos;zhao&apos;</div><div class="line">        console.log(name);// &apos;zhao&apos; （可访问）</div><div class="line">        name  = &apos;li&apos;; </div><div class="line">        console.log(a.name) // &apos;li&apos;  (可重写)</div><div class="line">        age = &apos;17&apos;; </div><div class="line">        console.log(a.age); // undefined (无法添加)</div><div class="line">        delete name;   </div><div class="line">        console.log(a.name); // undefined （可删除）</div><div class="line">        console.log(a); // Object&#123;&#125;空对象</div><div class="line">    &#125;</div><div class="line">    console.log(b);//1  </div><div class="line">    console.log(age); // 17</div></pre></td></tr></table></figure></p>
+<p>笔者新入门，能力有限难免会认知和理解出错，如果有错，希望朋友为我指正！</p>
 
       
     </div>
@@ -297,13 +302,13 @@ Object.prototype,请看以下测试代码能够验证:
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/12/26/jQuery-isPlain/">jQuery.isPlain()</a></p>
+        <p><span>本文标题:</span><a href="/2016/12/05/JavaScript-执行环境、作用域和作用域链/">理解JavaScript 作用域、执行环境和作用域链</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
-        <p><span>发布时间:</span>2015年12月26日 - 02时29分</p>
-        <p><span>最后更新:</span>2016年12月05日 - 09时25分</p>
+        <p><span>发布时间:</span>2016年12月05日 - 09时49分</p>
+        <p><span>最后更新:</span>2016年12月05日 - 09时54分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/12/26/jQuery-isPlain/" title="jQuery.isPlain()">http://Jxisme520.github.io/2015/12/26/jQuery-isPlain/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2015/12/26/jQuery-isPlain/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/05/JavaScript-执行环境、作用域和作用域链/" title="理解JavaScript 作用域、执行环境和作用域链">http://Jxisme520.github.io/2016/12/05/JavaScript-执行环境、作用域和作用域链/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/05/JavaScript-执行环境、作用域和作用域链/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -316,15 +321,11 @@ Object.prototype,请看以下测试代码能够验证:
 
 <nav id="article-nav">
   
-    <a href="/2016/11/30/jQuery-extend/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          jQuery.extend()源码解析
-        
-      </div>
-    </a>
   
+    <a href="/2016/11/30/jQuery-extend/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jQuery.extend()源码解析</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -381,7 +382,7 @@ Object.prototype,请看以下测试代码能够验证:
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/12/26/jQuery-isPlain/" data-title="jQuery.isPlain()" data-url="http://Jxisme520.github.io/2015/12/26/jQuery-isPlain/"></div>
+    <div class="ds-thread" data-thread-key="2016/12/05/JavaScript-执行环境、作用域和作用域链/" data-title="理解JavaScript 作用域、执行环境和作用域链" data-url="http://Jxisme520.github.io/2016/12/05/JavaScript-执行环境、作用域和作用域链/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -404,13 +405,13 @@ Object.prototype,请看以下测试代码能够验证:
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/11/30/jQuery-extend/" title="上一篇: jQuery.extend()源码解析">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2016/11/30/jQuery-extend/" title="下一篇: jQuery.extend()源码解析">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/05/JavaScript-执行环境、作用域和作用域链/">理解JavaScript 作用域、执行环境和作用域链</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/jQuery-extend/">jQuery.extend()源码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/jQuery-isPlain/">jQuery.isPlain()</a></li></ul>
