@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>JavaScript var声明变量和直接用标识符初始化的细节 | Hexo博客</title>
+  <title>jQuery(selector,context)函数参数含义 | Hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="深入理解声明变量的方式，以及他们之间的差别，探讨出现差异化的原因。">
+  <meta name="description" content="简述jQuery函数参数的含义">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript var声明变量和直接用标识符初始化的细节">
-<meta property="og:url" content="http://Jxisme520.github.io/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/index.html">
+<meta property="og:title" content="jQuery(selector,context)函数参数含义">
+<meta property="og:url" content="http://Jxisme520.github.io/2016/12/05/jQuery-selector-context-函数参数含义/index.html">
 <meta property="og:site_name" content="Hexo博客">
-<meta property="og:description" content="深入理解声明变量的方式，以及他们之间的差别，探讨出现差异化的原因。">
-<meta property="og:updated_time" content="2016-12-05T02:10:33.000Z">
+<meta property="og:description" content="简述jQuery函数参数的含义">
+<meta property="og:updated_time" content="2016-12-05T14:25:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript var声明变量和直接用标识符初始化的细节">
-<meta name="twitter:description" content="深入理解声明变量的方式，以及他们之间的差别，探讨出现差异化的原因。">
+<meta name="twitter:title" content="jQuery(selector,context)函数参数含义">
+<meta name="twitter:description" content="简述jQuery函数参数的含义">
   
     <link rel="alternative" href="/atom.xml" title="Hexo博客" type="application/atom+xml">
   
@@ -216,11 +216,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-JavaScript-var声明变量和直接用标识符初始化的细节" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-jQuery-selector-context-函数参数含义" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/" class="article-date">
-      <time datetime="2015-12-06T16:00:00.000Z" itemprop="datePublished">2015-12-07</time>
+      <a href="/2016/12/05/jQuery-selector-context-函数参数含义/" class="article-date">
+      <time datetime="2016-12-05T14:23:04.000Z" itemprop="datePublished">2016-12-05</time>
 </a>
     </div>
   
@@ -233,7 +233,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript var声明变量和直接用标识符初始化的细节
+      jQuery(selector,context)函数参数含义
     </h1>
   
 
@@ -241,14 +241,10 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/var/">var</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全局变量/">全局变量</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/声明/">声明</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/局部变量/">局部变量</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/context/">context</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/selector/">selector</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/上下文/">上下文</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/参数/">参数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/含义/">含义</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -258,46 +254,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>#结合函数fn分析:var声明变量和直接用标识符初始化的细节</p>
-<p>##1.var声明会指定变量的作用域，即用 var 操作符定义的变量将成为定义该变量的作用域中的局部变量</p>
-<pre><code>--fn执行完毕，在全局中访问c会报错说变量未定义，说明c的作用域只是在fn函数里面，而直接使用d = 4声明初始化的变量则
-默认是全局作用域，从c的输出可以验证
-</code></pre><p>##2.直接标识符初始化变量则默认是widow的一个属性，在全局中可以访问,</p>
-<pre><code>--《JavaScript面向对象编程指南》(第二版)中提到直接标识符初始化的变量是window的一个属性，这可以在window.b输出
-为2得到印证。浏览器在访问window对象的属性和方法可以省略‘window.’,也就是说在代码执行时候遇到没有var声明的标示符
-会默认把它当成window的属性
-
---如此说来，b = 2,这句代码其实是为window对象声明一个属性并初始化， var 声明的变量不是window的属性window.a输
-出undefiend是因为在访问window.a的时候，由于在window对象及其原型链中没有搜索到标示符为a的属性，所以就为window
-声明了a属性，但是并没有初始化，有声明没初始化的变量被默认赋值为undefined,这就是a的值为undefined而不引起浏览器
-报错
-
---发现《JavaScript高级程序设计》(第三版)中提到的‘所有在全局作用域中声明的变量，函数都会成为window对象的属性
-和方法’这句话不太正确，window属性必须通过window.obj或者不使用var直接obj = {}方式定义的变量才会是window的属
-性;在全局作用域中使用var声明的变量不是window的属性，比如以下的a;
-
---全局变量的定义可以通过b = 1,window.a的方式定义，局部变量通过var定义，var其实能够定义全局变量只是需要在全局环
-境中定义,个人觉得它本质上还是局部变量，只不过是var在指定变量的作用域时候，这个作用域刚好是全局作用域，作用域存在
-它就不会被释放，而全局作用域又是依赖全局执行环境存在，全局执行环境只有在页面关闭时候才会退出，使得它能够在页面的每
-个地方访问到。
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = 1;</div><div class="line">b = 2;</div><div class="line">function fn()&#123;</div><div class="line">    var c = 3;</div><div class="line">    d = 4;</div><div class="line">&#125;</div><div class="line">fn();</div><div class="line">console.log(a); // 1</div><div class="line">console.log(c); // Uncaught ReferenceError: c is not defined</div><div class="line">console.log(d); // 4</div><div class="line">console.log(window.a); // undefined</div><div class="line">console.log(window.b); // 2</div></pre></td></tr></table></figure>
-<p>##3.笔者遗留的问题，既然b是window的属性，那么它在栈中没有分配存储空间而var声明的在栈中分配了空间？(至今苦于没有学习到JavaScript中能够获取内存信息的方法所以一直没有验证，希望能解决的朋友能够告诉我一声)。</p>
-<p>##4.以下是结合以上结论个人对 x，window.x，var x 的理解：<br>     1.var 关键字其实是用来为变量申请内存的，浏览器在解析遇到var关键字时候会为它声明的变量在栈中分配存储空间，那么遇<br>     到 b = 1; 这类不带var表达式时会认为b已经分配内存了，所以并没有为它分配内存；</p>
-<pre><code>2.浏览器执行行流到达 b = 1;时，语句才真正被执行赋值操作，然而我们知道js代码执行中如果曾经没有被var声明过，它会
-当成window的一个属性，然而window是一个对象，window标识符的值是一个地址存在栈中指向堆内存中一个对象，堆内存又
-是动态分配的，b = 1;对还没分配内存的变量b赋值会为它在堆中分配内存(浏览器解析时候已经将需要分栈内存的变量分配好
-内存，执行时候除了执行环境变化才会操作栈内存，这也是为什么栈中保存的数据是固定大小的)，而f;是不会分配内存的。所
-以f没被映射到内存中。
-
---以下输出语句是实现获取f的值在打印在控制台的功能，计算机无法通过b对应的地址取到值所以报错，然而对比一下第二句代
-码console.log(window.f);输出undefined，然而不是说浏览器遇到没有var声明的f会当成浏览器属性吗？是的这并不矛
-盾，f和window.f还是不一样的，window.f执行过程:a).在window对象中获取f的值，如果没有找到执行下一个过程；b).设
-置f的值，没有指定值，默认赋值为undefined，而f;语句并不会调用设值方法，所以错误了
-
-3.总结：变量和对象有没有定义是指它是否被分配内存，js中 var和赋值操作发生时候，如果操作的变量事先没有定义过，那
-么将会为该变量分配内存空间;
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// f标识符是没有被声明过，也不存在window对象中</div><div class="line">console.log(f); // 报错：f未定义，</div><div class="line">console.log(window.f); // undefined</div></pre></td></tr></table></figure>
-
+        <h1 id="jQuery-selector-context-函数参数含义"><a href="#jQuery-selector-context-函数参数含义" class="headerlink" title="jQuery(selector,context)函数参数含义"></a>jQuery(selector,context)函数参数含义</h1><p>[TOC]</p>
+<h3 id="–回忆一下js编程环境中的对象类型，BOM对象，函数，DOM对象，能转化为falsely值的对象，普通的js对象（其中字符串对象是一个表达式，该表达式可以表示HTML标签，css选择器，正则表达式）"><a href="#–回忆一下js编程环境中的对象类型，BOM对象，函数，DOM对象，能转化为falsely值的对象，普通的js对象（其中字符串对象是一个表达式，该表达式可以表示HTML标签，css选择器，正则表达式）" class="headerlink" title="–回忆一下js编程环境中的对象类型，BOM对象，函数，DOM对象，能转化为falsely值的对象，普通的js对象（其中字符串对象是一个表达式，该表达式可以表示HTML标签，css选择器，正则表达式）"></a>–回忆一下js编程环境中的对象类型，BOM对象，函数，DOM对象，能转化为falsely值的对象，普通的js对象（其中字符串对象是一个表达式，该表达式可以表示HTML标签，css选择器，正则表达式）</h3><h2 id="1-selector：可以传入以上js编程环境中存在的对象-主要是其中包含了用于匹配元素集合的-CSS-选择器，用于匹配或者创建对象，请看以下代码；"><a href="#1-selector：可以传入以上js编程环境中存在的对象-主要是其中包含了用于匹配元素集合的-CSS-选择器，用于匹配或者创建对象，请看以下代码；" class="headerlink" title="1.selector：可以传入以上js编程环境中存在的对象,主要是其中包含了用于匹配元素集合的 CSS 选择器，用于匹配或者创建对象，请看以下代码；"></a>1.selector：可以传入以上js编程环境中存在的对象,主要是其中包含了用于匹配元素集合的 CSS 选择器，用于匹配或者创建对象，请看以下代码；</h2><p>   1.1、falsely值对象：undefined,null,””;<br>   1.2、字符串：a).HTML标签，创建DOM对象<br>                b).css选择器<br>                c).正则表达式<br>   1.3、普通的js对象<br>   1.4、BOM对象<br>   1.5、DOM对象<br>   1.6、函数</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"> &lt;div id=&quot;name&quot; class=&quot;foo&quot;&gt;</div><div class="line">        &lt;span&gt;1&lt;/span&gt;</div><div class="line">        &lt;span class=&quot;demo&quot;&gt;2&lt;/span&gt;</div><div class="line">        &lt;span&gt;3&lt;/span&gt;</div><div class="line">        &lt;span id=&quot;current&quot;&gt;4&lt;/span&gt;</div><div class="line">        &lt;span&gt;5&lt;/span&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div&gt;</div><div class="line">        &lt;span class=&quot;demo&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    (function()&#123;</div><div class="line">        // 1.1、selector为falsely值,返回的是一个只有一个属性指向jQuery.prototype对象的对象</div><div class="line">        console.log($(&quot;&quot;));</div><div class="line">        console.log($(null));</div><div class="line">        console.log($());</div><div class="line">        //init&#123;__proto__: Object[0]&#125;</div><div class="line"></div><div class="line">        // 1.2、BOM对象，返回一个jQuery形式的window对象,</div><div class="line">        console.log($(window)); // [window]</div><div class="line"></div><div class="line">        // 1.3、字符串</div><div class="line">        // 1.3.1、HTML标签,返回一个包含一个DOM对象的jQuery对象</div><div class="line">        console.log($(&quot;&lt;div&gt;&quot;)); // [div]</div><div class="line"></div><div class="line">        // 1.3.2、css选择器,返回一个包含多个DOM对象的jQuery对象</div><div class="line">        console.log($(&quot;div&quot;)); // [div#name.foo, div, prevObject: init[1], context: document, selector: &quot;div&quot;]</div><div class="line"></div><div class="line">        // 1.3.3、正则表达式      </div><div class="line">        // 1.4、普通js对象,返回一个包含了普通js对象的jQuery对象</div><div class="line">        var object = &#123;</div><div class="line">            name: &quot;obj&quot;,</div><div class="line">        &#125;</div><div class="line">        console.log($(object)); // [Object]</div><div class="line"></div><div class="line">        // 1.5、DOM对象，返回一个包含该DOM对象的jQuery对象</div><div class="line">        console.log($(document.getElementById(&quot;name&quot;))); //[div#name.foo, context: div#name.foo]    </div><div class="line"></div><div class="line">        // 1.6、函数，作为文档加载完成的回调函数，</div><div class="line">        $(function()&#123;</div><div class="line">            console.log(&quot;文档加载完毕&quot;);</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        // 2.1不管是DOM还是jQuery对象，都只能是包含一个DOM元素，不然context会是undefined,上下文切换到undefined，不起作用，</div><div class="line">        var divs = document.getElementsByTagName(&quot;div&quot;);</div><div class="line">        </div><div class="line">        console.log(divs);</div><div class="line">        </div><div class="line">        console.log($(&quot;.demo&quot;,$(divs)[0])); // [span.demo, prevObject: init[1], context: div#name.foo, selector: &quot;.demo&quot;]</div><div class="line">        </div><div class="line">        console.log($(&quot;.demo&quot;,divs[0])); // [span.demo, prevObject: init[1], context: div#name.foo, selector: &quot;.demo&quot;]</div><div class="line">        </div><div class="line">        console.log($(&quot;.demo&quot;,divs)); // [span.demo, span.demo, prevObject: init[2], context: undefined, selector: &quot;.demo&quot;]</div><div class="line">        </div><div class="line">        console.log($(&quot;.demo&quot;,$(divs))); // [span.demo, span.demo, prevObject: init[2], context: undefined, selector: &quot;.demo&quot;]</div><div class="line"></div><div class="line">        // 2.3 普通js对象,对创建的对象进行扩展，以下是创建一个 &lt;input&gt; 元素，同时设定 type 属性、属性值，以及一些事件</div><div class="line">        $(&quot;&lt;input&gt;&quot;, &#123;</div><div class="line">          type: &quot;text&quot;,</div><div class="line">          val: &quot;Test&quot;,</div><div class="line">          focusin: function() &#123;</div><div class="line">            $(this).val(&quot;focusin&quot;);</div><div class="line">          &#125;,</div><div class="line">          focusout: function() &#123;</div><div class="line">            $(this).val(&quot;focusout&quot;);</div><div class="line">          &#125;</div><div class="line">        &#125;).appendTo(&quot;form&quot;);</div><div class="line">    &#125;)();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="2-context：功能为主要用来限定第一个参数的查找范围，请看以上代码；"><a href="#2-context：功能为主要用来限定第一个参数的查找范围，请看以上代码；" class="headerlink" title="2.context：功能为主要用来限定第一个参数的查找范围，请看以上代码；"></a>2.context：功能为主要用来限定第一个参数的查找范围，请看以上代码；</h2><pre><code>2.1、DOM对象
+2.2、jQuery对象
+2.3、普通js对象
+</code></pre><h3 id="后续会有jQuery-fn-init-函数源码的理解"><a href="#后续会有jQuery-fn-init-函数源码的理解" class="headerlink" title="后续会有jQuery.fn.init()函数源码的理解"></a>后续会有jQuery.fn.init()函数源码的理解</h3>
       
     </div>
     
@@ -305,13 +268,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/">JavaScript var声明变量和直接用标识符初始化的细节</a></p>
+        <p><span>本文标题:</span><a href="/2016/12/05/jQuery-selector-context-函数参数含义/">jQuery(selector,context)函数参数含义</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
-        <p><span>发布时间:</span>2015年12月07日 - 00时00分</p>
-        <p><span>最后更新:</span>2016年12月05日 - 10时10分</p>
+        <p><span>发布时间:</span>2016年12月05日 - 22时23分</p>
+        <p><span>最后更新:</span>2016年12月05日 - 22时25分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/" title="JavaScript var声明变量和直接用标识符初始化的细节">http://Jxisme520.github.io/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/05/jQuery-selector-context-函数参数含义/" title="jQuery(selector,context)函数参数含义">http://Jxisme520.github.io/2016/12/05/jQuery-selector-context-函数参数含义/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/05/jQuery-selector-context-函数参数含义/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -324,18 +287,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2015/12/26/jQuery-isPlain/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          jQuery.isPlain()
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/12/06/JavaScript-执行环境、作用域和作用域链/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">理解JavaScript 作用域、执行环境和作用域链</div>
+    <a href="/2016/12/05/jQuery-总体源码结构笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jQuery 总体源码结构笔记</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -346,7 +300,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery-selector-context-函数参数含义"><span class="toc-number">1.</span> <span class="toc-text">jQuery(selector,context)函数参数含义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#–回忆一下js编程环境中的对象类型，BOM对象，函数，DOM对象，能转化为falsely值的对象，普通的js对象（其中字符串对象是一个表达式，该表达式可以表示HTML标签，css选择器，正则表达式）"><span class="toc-number">1.0.1.</span> <span class="toc-text">–回忆一下js编程环境中的对象类型，BOM对象，函数，DOM对象，能转化为falsely值的对象，普通的js对象（其中字符串对象是一个表达式，该表达式可以表示HTML标签，css选择器，正则表达式）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-selector：可以传入以上js编程环境中存在的对象-主要是其中包含了用于匹配元素集合的-CSS-选择器，用于匹配或者创建对象，请看以下代码；"><span class="toc-number">1.1.</span> <span class="toc-text">1.selector：可以传入以上js编程环境中存在的对象,主要是其中包含了用于匹配元素集合的 CSS 选择器，用于匹配或者创建对象，请看以下代码；</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码："><span class="toc-number">1.1.1.</span> <span class="toc-text">代码：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-context：功能为主要用来限定第一个参数的查找范围，请看以上代码；"><span class="toc-number">1.2.</span> <span class="toc-text">2.context：功能为主要用来限定第一个参数的查找范围，请看以上代码；</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#后续会有jQuery-fn-init-函数源码的理解"><span class="toc-number">1.2.1.</span> <span class="toc-text">后续会有jQuery.fn.init()函数源码的理解</span></a></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -394,7 +348,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/" data-title="JavaScript var声明变量和直接用标识符初始化的细节" data-url="http://Jxisme520.github.io/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/"></div>
+    <div class="ds-thread" data-thread-key="2016/12/05/jQuery-selector-context-函数参数含义/" data-title="jQuery(selector,context)函数参数含义" data-url="http://Jxisme520.github.io/2016/12/05/jQuery-selector-context-函数参数含义/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -417,13 +371,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/12/26/jQuery-isPlain/" title="上一篇: jQuery.isPlain()">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2015/12/06/JavaScript-执行环境、作用域和作用域链/" title="下一篇: 理解JavaScript 作用域、执行环境和作用域链">
+            <a href="/2016/12/05/jQuery-总体源码结构笔记/" title="下一篇: jQuery 总体源码结构笔记">
                 <i class="fa fa-angle-right"></i>
             </a>
         
