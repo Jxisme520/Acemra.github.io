@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/index.html">
 <meta property="og:site_name" content="Hexo博客">
 <meta property="og:description" content="jQuery中on()函数的用法,整理了参数的含义">
-<meta property="og:updated_time" content="2016-12-06T15:40:32.000Z">
+<meta property="og:updated_time" content="2016-12-06T15:44:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery中on()函数的用法笔记">
 <meta name="twitter:description" content="jQuery中on()函数的用法,整理了参数的含义">
@@ -284,19 +284,18 @@ d).handler:事件处理函数，可以用false代替；
     c).handler函数的this指向取决于事件绑定在谁上面，所
 
     以两次的$(this).html()输出不一样
-</code></pre><h2 id="2、用法二：on-eventsMap-selector-handler"><a href="#2、用法二：on-eventsMap-selector-handler" class="headerlink" title="2、用法二：on(eventsMap,selector,handler)"></a>2、用法二：on(eventsMap,selector,handler)</h2><p>B.在需要对一个或者多个对象绑定多个事件，并对应多个事件处<br>理函数时候使用；</p>
-<h3 id="2-1、参数的含义结合代码片二分析："><a href="#2-1、参数的含义结合代码片二分析：" class="headerlink" title="2.1、参数的含义结合代码片二分析："></a>2.1、参数的含义结合代码片二分析：</h3><pre><code> a).eventsMap:一个对象（事件--事件处理函数的映射），即
- 是对象的属性key是事件名，属性值value是事件处理函数；
- 比如{
+</code></pre><h2 id="2、用法二：on-eventsMap-selector-handler"><a href="#2、用法二：on-eventsMap-selector-handler" class="headerlink" title="2、用法二：on(eventsMap,selector,handler)"></a>2、用法二：on(eventsMap,selector,handler)</h2><p>B.在需要对一个或者多个对象绑定多个事件，并对应多个事件处理函数时候使用；</p>
+<h3 id="2-1、参数的含义结合代码片二分析："><a href="#2-1、参数的含义结合代码片二分析：" class="headerlink" title="2.1、参数的含义结合代码片二分析："></a>2.1、参数的含义结合代码片二分析：</h3><pre><code> a).eventsMap:一个对象（事件--事件处理函数的映射），即是对象的属性key是事件名，属
+ 性值value是事件处理函数；比如
+ {
     click: handler1,
     mouseenter: handler2
  }
 
-b).seletor:选择器，用于查找到选择绑定事件的DOM对象，可
-选，没有指定的时候默认将事件绑定在调用on函数的对象上;
+b).seletor:选择器，用于查找到选择绑定事件的DOM对象，可选，没有指定的时候默认将事件
+绑定在调用on函数的对象上;
 
-c).data:可选，传入的数据存放在e.data中，再间接传入到事
-件处理函数之中；
+c).data:可选，传入的数据存放在e.data中，再间接传入到事件处理函数之中；
 </code></pre><h3 id="代码片二："><a href="#代码片二：" class="headerlink" title="代码片二："></a>代码片二：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var eventsMap = &#123;</div><div class="line">    click: handler1,</div><div class="line">    mouseenter: handler2</div><div class="line">&#125;</div><div class="line">function handler1(e)&#123;</div><div class="line">    console.log(&quot;click&quot;);</div><div class="line">&#125;</div><div class="line">function handler2(e)&#123;</div><div class="line">    console.log(&quot;mouseenter&quot;);</div><div class="line">&#125;</div><div class="line">$(&quot;ul&quot;).on(eventsMap);</div></pre></td></tr></table></figure>
 
       
@@ -309,7 +308,7 @@ c).data:可选，传入的数据存放在e.data中，再间接传入到事
         <p><span>本文标题:</span><a href="/2016/12/06/jQuery中on-函数的用法笔记/">jQuery中on()函数的用法笔记</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
         <p><span>发布时间:</span>2016年12月06日 - 23时28分</p>
-        <p><span>最后更新:</span>2016年12月06日 - 23时40分</p>
+        <p><span>最后更新:</span>2016年12月06日 - 23时44分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/12/06/jQuery中on-函数的用法笔记/" title="jQuery中on()函数的用法笔记">http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
