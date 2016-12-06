@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>name | Hexo博客</title>
+  <title>jQuery中on()函数的用法笔记 | Hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="以上是摘要">
+  <meta name="description" content="jQuery中on()函数的用法,整理了参数的含义">
 <meta property="og:type" content="article">
-<meta property="og:title" content="name">
+<meta property="og:title" content="jQuery中on()函数的用法笔记">
 <meta property="og:url" content="http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/index.html">
 <meta property="og:site_name" content="Hexo博客">
-<meta property="og:description" content="以上是摘要">
-<meta property="og:updated_time" content="2016-12-06T15:28:50.000Z">
+<meta property="og:description" content="jQuery中on()函数的用法,整理了参数的含义">
+<meta property="og:updated_time" content="2016-12-06T15:31:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="name">
-<meta name="twitter:description" content="以上是摘要">
+<meta name="twitter:title" content="jQuery中on()函数的用法笔记">
+<meta name="twitter:description" content="jQuery中on()函数的用法,整理了参数的含义">
   
     <link rel="alternative" href="/atom.xml" title="Hexo博客" type="application/atom+xml">
   
@@ -142,7 +142,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/JavaSciprt/" style="font-size: 10px;">JavaSciprt</a> <a href="/tags/JavaScript/" style="font-size: 13.33px;">JavaScript</a> <a href="/tags/JvaScript/" style="font-size: 10px;">JvaScript</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/context/" style="font-size: 10px;">context</a> <a href="/tags/exec/" style="font-size: 10px;">exec()</a> <a href="/tags/extend/" style="font-size: 10px;">extend()</a> <a href="/tags/isPlain/" style="font-size: 10px;">isPlain()</a> <a href="/tags/jQuery/" style="font-size: 20px;">jQuery</a> <a href="/tags/selector/" style="font-size: 10px;">selector</a> <a href="/tags/test/" style="font-size: 10px;">test()</a> <a href="/tags/var/" style="font-size: 10px;">var</a> <a href="/tags/上下文/" style="font-size: 10px;">上下文</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/作用域链/" style="font-size: 10px;">作用域链</a> <a href="/tags/全局变量/" style="font-size: 10px;">全局变量</a> <a href="/tags/参数含义/" style="font-size: 10px;">参数含义</a> <a href="/tags/声明/" style="font-size: 10px;">声明</a> <a href="/tags/局部变量/" style="font-size: 10px;">局部变量</a> <a href="/tags/执行环境/" style="font-size: 10px;">执行环境</a> <a href="/tags/源码/" style="font-size: 16.67px;">源码</a> <a href="/tags/结构/" style="font-size: 10px;">结构</a> <a href="/tags/解析/" style="font-size: 13.33px;">解析</a> <a href="/tags/逗号表达式/" style="font-size: 10px;">逗号表达式</a>
+                        <a href="/tags/JavaSciprt/" style="font-size: 10px;">JavaSciprt</a> <a href="/tags/JavaScript/" style="font-size: 13.33px;">JavaScript</a> <a href="/tags/JvaScript/" style="font-size: 10px;">JvaScript</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/context/" style="font-size: 10px;">context</a> <a href="/tags/exec/" style="font-size: 10px;">exec()</a> <a href="/tags/extend/" style="font-size: 10px;">extend()</a> <a href="/tags/isPlain/" style="font-size: 10px;">isPlain()</a> <a href="/tags/jQuery/" style="font-size: 20px;">jQuery</a> <a href="/tags/on-用法/" style="font-size: 10px;">on()用法</a> <a href="/tags/selector/" style="font-size: 10px;">selector</a> <a href="/tags/test/" style="font-size: 10px;">test()</a> <a href="/tags/var/" style="font-size: 10px;">var</a> <a href="/tags/上下文/" style="font-size: 10px;">上下文</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/作用域链/" style="font-size: 10px;">作用域链</a> <a href="/tags/全局变量/" style="font-size: 10px;">全局变量</a> <a href="/tags/参数含义/" style="font-size: 10px;">参数含义</a> <a href="/tags/声明/" style="font-size: 10px;">声明</a> <a href="/tags/局部变量/" style="font-size: 10px;">局部变量</a> <a href="/tags/执行环境/" style="font-size: 10px;">执行环境</a> <a href="/tags/源码/" style="font-size: 16.67px;">源码</a> <a href="/tags/结构/" style="font-size: 10px;">结构</a> <a href="/tags/解析/" style="font-size: 13.33px;">解析</a> <a href="/tags/逗号表达式/" style="font-size: 10px;">逗号表达式</a>
                     </div>
                 </section>
                 
@@ -233,7 +233,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      name
+      jQuery中on()函数的用法笔记
     </h1>
   
 
@@ -241,8 +241,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/jQuery/">jQuery</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/on-用法/">on()用法</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -250,10 +258,48 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <pre><code>以上是摘要
-</code></pre><a id="more"></a>
-<pre><code>以下是余下全文
-</code></pre>
+        <h1 id="jQuery中on-函数的用法笔记"><a href="#jQuery中on-函数的用法笔记" class="headerlink" title="jQuery中on()函数的用法笔记"></a>jQuery中on()函数的用法笔记</h1><h2 id="1、用法一：on-events-selector-data-handler-，"><a href="#1、用法一：on-events-selector-data-handler-，" class="headerlink" title="1、用法一：on(events,selector,data,handler)，"></a>1、用法一：on(events,selector,data,handler)，</h2><p>– 当我们要对一个或者多个元素绑定多个事件，同时对应一个事<br>件处理函数时使用</p>
+<h3 id="1-1、参数的含义结合代码片一："><a href="#1-1、参数的含义结合代码片一：" class="headerlink" title="1.1、参数的含义结合代码片一："></a>1.1、参数的含义结合代码片一：</h3><pre><code>a).events:一个或者多个事件名称加命名空间组成中间隔着空格
+,比如(&quot;click&quot;)|（“click.one mouseenter.two”）;
+
+b).seletor:选择器，用于查找到选择绑定事件的DOM对象，可选
+，没有指定的时候默认将事件绑定在调用on函数的对象上;
+
+c).data:可选，传入的数据存放在e.data中，再间接传入到事件
+处理函数之中；
+
+d).handler:事件处理函数，可以用false代替；
+</code></pre><h3 id="代码片公用的html"><a href="#代码片公用的html" class="headerlink" title="代码片公用的html"></a>代码片公用的html</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;ul style=&quot;width: 400px;height: 400px;border: solid 1px #000&quot;&gt;</div><div class="line">        &lt;li&gt;1&lt;/li&gt;</div><div class="line">        &lt;li id=&quot;two&quot;&gt;2&lt;/li&gt;</div><div class="line">        &lt;li&gt;3&lt;/li&gt;</div><div class="line">        &lt;li&gt;4&lt;/li&gt;</div><div class="line">        &lt;li&gt;5&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<h3 id="代码片一："><a href="#代码片一：" class="headerlink" title="代码片一："></a>代码片一：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">        var data = &#123;</div><div class="line">            name: &quot;数据&quot;,</div><div class="line">        &#125;</div><div class="line">        function handler(e)&#123;</div><div class="line">            console.log(e.data);</div><div class="line">            console.log($(this).html());</div><div class="line">        &#125;</div><div class="line">        $(&quot;ul&quot;).on(&quot;click.one&quot;,&quot;#two&quot;,data,handler);</div><div class="line">        /*  只有点击id为two的li才会触发</div><div class="line">        输出Object &#123;name: &quot;数据&quot;&#125; </div><div class="line">         2</div><div class="line">        */</div><div class="line">        $(&quot;ul&quot;).on(&quot;click.one&quot;,data,handler);</div><div class="line">        /* 只要在ul的范围内点击就能够触发</div><div class="line">        输出 Object &#123;name: &quot;数据&quot;&#125;</div><div class="line">        &lt;li&gt;1&lt;/li&gt;</div><div class="line">        &lt;li id=&quot;two&quot;&gt;2&lt;/li&gt;</div><div class="line">        &lt;li&gt;3&lt;/li&gt;</div><div class="line">        &lt;li&gt;4&lt;/li&gt;</div><div class="line">        &lt;li&gt;5&lt;/li&gt;</div><div class="line">        */</div><div class="line">    &#125;)();</div></pre></td></tr></table></figure>
+<p>总结：<br>    1、首先如果将事件处理函数分离出来比如handler，在函数内<br>    部如果需要使用到event对象，则必须在函数声明的时候必须<br>    设置e形式参数；</p>
+<pre><code>2、e.data的输出可以知道data参数是存放在event对象中的
+
+3、对比两次绑定事件的输出：
+
+    a).第一次绑定指定了selector，那么事件是绑定在由该s
+
+    elector查找到的DOM元素
+
+    b).第二次是绑定在调用该on函数的ul上的
+
+    c).handler函数的this指向取决于事件绑定在谁上面，所
+
+    以两次的$(this).html()输出不一样
+</code></pre><h2 id="2、用法二：on-eventsMap-selector-handler"><a href="#2、用法二：on-eventsMap-selector-handler" class="headerlink" title="2、用法二：on(eventsMap,selector,handler)"></a>2、用法二：on(eventsMap,selector,handler)</h2><p>– 在需要对一个或者多个对象绑定多个事件，并对应多个事件处<br>理函数时候使用；</p>
+<h3 id="2-1、参数的含义结合代码片二分析："><a href="#2-1、参数的含义结合代码片二分析：" class="headerlink" title="2.1、参数的含义结合代码片二分析："></a>2.1、参数的含义结合代码片二分析：</h3><pre><code> a).eventsMap:一个对象（事件--事件处理函数的映射），即
+ 是对象的属性key是事件名，属性值value是事件处理函数；
+ 比如{
+    click: handler1,
+    mouseenter: handler2
+ }
+
+b).seletor:选择器，用于查找到选择绑定事件的DOM对象，可
+选，没有指定的时候默认将事件绑定在调用on函数的对象上;
+
+c).data:可选，传入的数据存放在e.data中，再间接传入到事
+件处理函数之中；
+</code></pre><h3 id="代码片二："><a href="#代码片二：" class="headerlink" title="代码片二："></a>代码片二：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var eventsMap = &#123;</div><div class="line">    click: handler1,</div><div class="line">    mouseenter: handler2</div><div class="line">&#125;</div><div class="line">function handler1(e)&#123;</div><div class="line">    console.log(&quot;click&quot;);</div><div class="line">&#125;</div><div class="line">function handler2(e)&#123;</div><div class="line">    console.log(&quot;mouseenter&quot;);</div><div class="line">&#125;</div><div class="line">$(&quot;ul&quot;).on(eventsMap);</div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -261,12 +307,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/12/06/jQuery中on-函数的用法笔记/">name</a></p>
+        <p><span>本文标题:</span><a href="/2016/12/06/jQuery中on-函数的用法笔记/">jQuery中on()函数的用法笔记</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
         <p><span>发布时间:</span>2016年12月06日 - 23时28分</p>
-        <p><span>最后更新:</span>2016年12月06日 - 23时28分</p>
+        <p><span>最后更新:</span>2016年12月06日 - 23时31分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/12/06/jQuery中on-函数的用法笔记/" title="name">http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/</a>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/06/jQuery中on-函数的用法笔记/" title="jQuery中on()函数的用法笔记">http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
@@ -293,7 +339,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery中on-函数的用法笔记"><span class="toc-number">1.</span> <span class="toc-text">jQuery中on()函数的用法笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、用法一：on-events-selector-data-handler-，"><span class="toc-number">1.1.</span> <span class="toc-text">1、用法一：on(events,selector,data,handler)，</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、参数的含义结合代码片一："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1、参数的含义结合代码片一：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片公用的html"><span class="toc-number">1.1.2.</span> <span class="toc-text">代码片公用的html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片一："><span class="toc-number">1.1.3.</span> <span class="toc-text">代码片一：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、用法二：on-eventsMap-selector-handler"><span class="toc-number">1.2.</span> <span class="toc-text">2、用法二：on(eventsMap,selector,handler)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、参数的含义结合代码片二分析："><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1、参数的含义结合代码片二分析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片二："><span class="toc-number">1.2.2.</span> <span class="toc-text">代码片二：</span></a></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -341,7 +387,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/12/06/jQuery中on-函数的用法笔记/" data-title="name" data-url="http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/"></div>
+    <div class="ds-thread" data-thread-key="2016/12/06/jQuery中on-函数的用法笔记/" data-title="jQuery中on()函数的用法笔记" data-url="http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -373,7 +419,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/jQuery中on-函数的用法笔记/">name</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/JavaScript-RegExp方法/">JavaScript RegExp方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/05/jQuery-selector-context-函数参数含义/">jQuery(selector,context)函数参数含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/05/jQuery-总体源码结构笔记/">jQuery 总体源码结构笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/jQuery-extend/">jQuery.extend()源码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/jQuery-isPlain/">jQuery.isPlain()</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/">JavaScript var声明变量和直接用标识符初始化的细节</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/JavaScript-执行环境、作用域和作用域链/">理解JavaScript 作用域、执行环境和作用域链</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/05/JavaScript-逗号表达式/">JavaScript 逗号表达式笔记</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/jQuery中on-函数的用法笔记/">jQuery中on()函数的用法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/JavaScript-RegExp方法/">JavaScript RegExp方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/05/jQuery-selector-context-函数参数含义/">jQuery(selector,context)函数参数含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/05/jQuery-总体源码结构笔记/">jQuery 总体源码结构笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/jQuery-extend/">jQuery.extend()源码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/jQuery-isPlain/">jQuery.isPlain()</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/">JavaScript var声明变量和直接用标识符初始化的细节</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/JavaScript-执行环境、作用域和作用域链/">理解JavaScript 作用域、执行环境和作用域链</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/05/JavaScript-逗号表达式/">JavaScript 逗号表达式笔记</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
