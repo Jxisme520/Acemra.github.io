@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/index.html">
 <meta property="og:site_name" content="Hexo博客">
 <meta property="og:description" content="jQuery中on()函数的用法,整理了参数的含义">
-<meta property="og:updated_time" content="2016-12-06T15:45:33.000Z">
+<meta property="og:updated_time" content="2016-12-07T04:05:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery中on()函数的用法笔记">
 <meta name="twitter:description" content="jQuery中on()函数的用法,整理了参数的含义">
@@ -262,8 +262,8 @@
 <h3 id="1-1、参数的含义结合代码片一："><a href="#1-1、参数的含义结合代码片一：" class="headerlink" title="1.1、参数的含义结合代码片一："></a>1.1、参数的含义结合代码片一：</h3><pre><code>a).events:一个或者多个事件名称加命名空间组成中间隔着空格,比如
 (&quot;click&quot;)|（“click.one mouseenter.two”）;
 
-b).seletor:选择器，用于查找到选择绑定事件的DOM对象，可选，没有指定的时候默认将事件
-绑定在调用on函数的对象上;
+b).seletor:选择器，用于查找到事件触发对象(事件源)，可选，没有指定的时候默认事件
+源是调用on函数的对象;
 
 c).data:可选，传入的数据存放在e.data中，再间接传入到事件处理函数之中；
 
@@ -275,13 +275,13 @@ d).handler:事件处理函数，可以用false代替；
 
 3、对比两次绑定事件的输出：
 
-    a).第一次绑定指定了selector，那么事件是绑定在由该s
+    a).第一次绑定指定了selector，那么事件源是绑定在由该s
 
     elector查找到的DOM元素
 
     b).第二次是绑定在调用该on函数的ul上的
 
-    c).handler函数的this指向取决于事件绑定在谁上面，所
+    c).handler函数的this指向取决于事件源是谁，即是谁触发了事件，所
 
     以两次的$(this).html()输出不一样
 </code></pre><h2 id="2、用法二：on-eventsMap-selector-handler"><a href="#2、用法二：on-eventsMap-selector-handler" class="headerlink" title="2、用法二：on(eventsMap,selector,handler)"></a>2、用法二：on(eventsMap,selector,handler)</h2><p>B.在需要对一个或者多个对象绑定多个事件，并对应多个事件处理函数时候使用；</p>
@@ -292,12 +292,26 @@ d).handler:事件处理函数，可以用false代替；
     mouseenter: handler2
  }
 
-b).seletor:选择器，用于查找到选择绑定事件的DOM对象，可选，没有指定的时候默认将事件
-绑定在调用on函数的对象上;
+b).seletor:选择器，用于查找到事件触发对象(事件源)，可选，没有指定的时候默认事件
+源是调用on函数的对象;
 
 c).data:可选，传入的数据存放在e.data中，再间接传入到事件处理函数之中；
 </code></pre><h3 id="代码片二："><a href="#代码片二：" class="headerlink" title="代码片二："></a>代码片二：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var eventsMap = &#123;</div><div class="line">    click: handler1,</div><div class="line">    mouseenter: handler2</div><div class="line">&#125;</div><div class="line">function handler1(e)&#123;</div><div class="line">    console.log(&quot;click&quot;);</div><div class="line">&#125;</div><div class="line">function handler2(e)&#123;</div><div class="line">    console.log(&quot;mouseenter&quot;);</div><div class="line">&#125;</div><div class="line">$(&quot;ul&quot;).on(eventsMap);</div></pre></td></tr></table></figure>
+<h2 id="3-通过事件三要素和冒泡来理解on-函数绑定事件"><a href="#3-通过事件三要素和冒泡来理解on-函数绑定事件" class="headerlink" title="3.通过事件三要素和冒泡来理解on()函数绑定事件"></a>3.通过事件三要素和冒泡来理解on()函数绑定事件</h2><h3 id="3-1、什么是事件三要素？"><a href="#3-1、什么是事件三要素？" class="headerlink" title="3.1、什么是事件三要素？"></a>3.1、什么是事件三要素？</h3><pre><code>a).事件源：是指触发事件的对象；
+b).事件类型：
+c).事件处理程序：事件触发后所做的一系列操作；
 
+A.完成事件需要以上三个要素缺一不可
+</code></pre><h3 id="3-2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，"><a href="#3-2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，" class="headerlink" title="3.2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，"></a>3.2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，</h3><h3 id="一直持续到document"><a href="#一直持续到document" class="headerlink" title="一直持续到document"></a>一直持续到document</h3><h3 id="3-3、简述on-绑定事件："><a href="#3-3、简述on-绑定事件：" class="headerlink" title="3.3、简述on()绑定事件："></a>3.3、简述on()绑定事件：</h3><pre><code>a).selector是指定了事件源，也就是触发事件的对象，不管有没有指定selector,
+events,handler都是绑定在调用on()函数的对象上面的，，
+
+b).没有指定selector时候，事件源就是on函数调用者，
+
+c).指定selector时候，事件源就是选择到的那个后代对象，所以只有当在事件源上触发
+事件的时候，事件就会向上冒泡直到on函数调用者，此时执行事件处理程序，在没有选择到
+的对象上面无法触发事件，包括绑定了事件类型和事件处理程序的on调用对象，因为这些对
+象缺少了事件源要素
+</code></pre>
       
     </div>
     
@@ -308,7 +322,7 @@ c).data:可选，传入的数据存放在e.data中，再间接传入到事件处
         <p><span>本文标题:</span><a href="/2016/12/06/jQuery中on-函数的用法笔记/">jQuery中on()函数的用法笔记</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
         <p><span>发布时间:</span>2016年12月06日 - 23时28分</p>
-        <p><span>最后更新:</span>2016年12月06日 - 23时45分</p>
+        <p><span>最后更新:</span>2016年12月07日 - 12时05分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/12/06/jQuery中on-函数的用法笔记/" title="jQuery中on()函数的用法笔记">http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -346,7 +360,7 @@ c).data:可选，传入的数据存放在e.data中，再间接传入到事件处
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery中on-函数的用法笔记"><span class="toc-number">1.</span> <span class="toc-text">jQuery中on()函数的用法笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、用法一：on-events-selector-data-handler-，"><span class="toc-number">1.1.</span> <span class="toc-text">1、用法一：on(events,selector,data,handler)，</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、参数的含义结合代码片一："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1、参数的含义结合代码片一：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片公用的html"><span class="toc-number">1.1.2.</span> <span class="toc-text">代码片公用的html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片一："><span class="toc-number">1.1.3.</span> <span class="toc-text">代码片一：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、用法二：on-eventsMap-selector-handler"><span class="toc-number">1.2.</span> <span class="toc-text">2、用法二：on(eventsMap,selector,handler)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、参数的含义结合代码片二分析："><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1、参数的含义结合代码片二分析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片二："><span class="toc-number">1.2.2.</span> <span class="toc-text">代码片二：</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery中on-函数的用法笔记"><span class="toc-number">1.</span> <span class="toc-text">jQuery中on()函数的用法笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、用法一：on-events-selector-data-handler-，"><span class="toc-number">1.1.</span> <span class="toc-text">1、用法一：on(events,selector,data,handler)，</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、参数的含义结合代码片一："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1、参数的含义结合代码片一：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片公用的html"><span class="toc-number">1.1.2.</span> <span class="toc-text">代码片公用的html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片一："><span class="toc-number">1.1.3.</span> <span class="toc-text">代码片一：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、用法二：on-eventsMap-selector-handler"><span class="toc-number">1.2.</span> <span class="toc-text">2、用法二：on(eventsMap,selector,handler)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、参数的含义结合代码片二分析："><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1、参数的含义结合代码片二分析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片二："><span class="toc-number">1.2.2.</span> <span class="toc-text">代码片二：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-通过事件三要素和冒泡来理解on-函数绑定事件"><span class="toc-number">1.3.</span> <span class="toc-text">3.通过事件三要素和冒泡来理解on()函数绑定事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1、什么是事件三要素？"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1、什么是事件三要素？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一直持续到document"><span class="toc-number">1.3.3.</span> <span class="toc-text">一直持续到document</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3、简述on-绑定事件："><span class="toc-number">1.3.4.</span> <span class="toc-text">3.3、简述on()绑定事件：</span></a></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
