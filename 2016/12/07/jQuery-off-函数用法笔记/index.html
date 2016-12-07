@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>jQuery中on()函数的用法笔记 | Hexo博客</title>
+  <title>jQuery.off()函数用法笔记 | Hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jQuery中on()函数的用法,整理了参数的含义">
+  <meta name="description" content="jQuery.off()函数的使用方法简析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery中on()函数的用法笔记">
-<meta property="og:url" content="http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/index.html">
+<meta property="og:title" content="jQuery.off()函数用法笔记">
+<meta property="og:url" content="http://Jxisme520.github.io/2016/12/07/jQuery-off-函数用法笔记/index.html">
 <meta property="og:site_name" content="Hexo博客">
-<meta property="og:description" content="jQuery中on()函数的用法,整理了参数的含义">
-<meta property="og:updated_time" content="2016-12-07T07:50:19.000Z">
+<meta property="og:description" content="jQuery.off()函数的使用方法简析">
+<meta property="og:updated_time" content="2016-12-07T08:32:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery中on()函数的用法笔记">
-<meta name="twitter:description" content="jQuery中on()函数的用法,整理了参数的含义">
+<meta name="twitter:title" content="jQuery.off()函数用法笔记">
+<meta name="twitter:description" content="jQuery.off()函数的使用方法简析">
   
     <link rel="alternative" href="/atom.xml" title="Hexo博客" type="application/atom+xml">
   
@@ -216,11 +216,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-jQuery中on-函数的用法笔记" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-jQuery-off-函数用法笔记" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/06/jQuery中on-函数的用法笔记/" class="article-date">
-      <time datetime="2016-12-06T15:28:50.000Z" itemprop="datePublished">2016-12-06</time>
+      <a href="/2016/12/07/jQuery-off-函数用法笔记/" class="article-date">
+      <time datetime="2016-12-07T08:30:14.000Z" itemprop="datePublished">2016-12-07</time>
 </a>
     </div>
   
@@ -233,7 +233,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      jQuery中on()函数的用法笔记
+      jQuery.off()函数用法笔记
     </h1>
   
 
@@ -248,7 +248,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/on-用法/">on()用法</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/off-函数/">off()函数</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -258,63 +258,16 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="jQuery中on-函数的用法笔记"><a href="#jQuery中on-函数的用法笔记" class="headerlink" title="jQuery中on()函数的用法笔记"></a>jQuery中on()函数的用法笔记</h1><h2 id="1、用法一：on-events-selector-data-handler-，"><a href="#1、用法一：on-events-selector-data-handler-，" class="headerlink" title="1、用法一：on(events,selector,data,handler)，"></a>1、用法一：on(events,selector,data,handler)，</h2><p>A.当我们要对一个或者多个元素绑定多个事件，同时对应一个事件处理函数时使用</p>
-<h3 id="1-1、参数的含义结合代码片一："><a href="#1-1、参数的含义结合代码片一：" class="headerlink" title="1.1、参数的含义结合代码片一："></a>1.1、参数的含义结合代码片一：</h3><pre><code>a).events:一个或者多个事件名称加命名空间组成中间隔着空格,比如
-(&quot;click&quot;)|（“click.one mouseenter.two”）;
+        <pre><code>以上是摘要
+</code></pre><a id="more"></a>
+<pre><code>以下是余下全文
+</code></pre><h1 id="jQuery-off-函数用法笔记"><a href="#jQuery-off-函数用法笔记" class="headerlink" title="jQuery.off()函数用法笔记"></a>jQuery.off()函数用法笔记</h1><h2 id="1、off-函数的用法：off（events-selector-handler），"><a href="#1、off-函数的用法：off（events-selector-handler），" class="headerlink" title="1、off()函数的用法：off（events,selector,handler），"></a>1、off()函数的用法：off（events,selector,handler），</h2><h3 id="接受三个参数："><a href="#接受三个参数：" class="headerlink" title="接受三个参数："></a>接受三个参数：</h3><pre><code>a.events：要解绑的事件类型，
+selector:on()函数绑定事件的对象，并且值得和绑定时候传入的选择器值一样
+handler:事件处理程序
+</code></pre><h3 id="1-1、off（events-selector-handler）："><a href="#1-1、off（events-selector-handler）：" class="headerlink" title="1.1、off（events,selector,handler）："></a>1.1、off（events,selector,handler）：</h3><h3 id="具体指定了需要解绑事件的对象，事件的类型，和解绑的事件处理程序，限制的条件较多，能"><a href="#具体指定了需要解绑事件的对象，事件的类型，和解绑的事件处理程序，限制的条件较多，能" class="headerlink" title="具体指定了需要解绑事件的对象，事件的类型，和解绑的事件处理程序，限制的条件较多，能"></a>具体指定了需要解绑事件的对象，事件的类型，和解绑的事件处理程序，限制的条件较多，能</h3><h3 id="够最准确地解绑事件；"><a href="#够最准确地解绑事件；" class="headerlink" title="够最准确地解绑事件；"></a>够最准确地解绑事件；</h3><h3 id="1-2、-off-events-selector"><a href="#1-2、-off-events-selector" class="headerlink" title="1.2、.off( events , selector  ):"></a>1.2、.off( events , selector  ):</h3><h3 id="指定了具体指定了需要解绑事件的对象，事件的类型，会使得所有属于该事件类型的事件处理程序被解绑；"><a href="#指定了具体指定了需要解绑事件的对象，事件的类型，会使得所有属于该事件类型的事件处理程序被解绑；" class="headerlink" title="指定了具体指定了需要解绑事件的对象，事件的类型，会使得所有属于该事件类型的事件处理程序被解绑；"></a>指定了具体指定了需要解绑事件的对象，事件的类型，会使得所有属于该事件类型的事件处理程序被解绑；</h3><h3 id="1-3、off-events-会解绑调用对象的指定事件类型，"><a href="#1-3、off-events-会解绑调用对象的指定事件类型，" class="headerlink" title="1.3、off(events):会解绑调用对象的指定事件类型，"></a>1.3、off(events):会解绑调用对象的指定事件类型，</h3><h3 id="1-4、off-会解绑调用对象的所有绑定事件比如以下的mouseenter，click"><a href="#1-4、off-会解绑调用对象的所有绑定事件比如以下的mouseenter，click" class="headerlink" title="1.4、off(): 会解绑调用对象的所有绑定事件比如以下的mouseenter，click"></a>1.4、off(): 会解绑调用对象的所有绑定事件比如以下的mouseenter，click</h3><h3 id="html代码："><a href="#html代码：" class="headerlink" title="html代码："></a>html代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;ul style=&quot;width: 400px;height: 400px;border: solid 1px #000&quot;&gt;</div><div class="line">    &lt;li id=&quot;one&quot;&gt;1&lt;/li&gt;</div><div class="line">    &lt;li id=&quot;two&quot;&gt;2&lt;/li&gt;</div><div class="line">    &lt;li id=&quot;three&quot;&gt;3&lt;/li&gt;</div><div class="line">    &lt;li id=&quot;four&quot;&gt;4&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<h3 id="代码片一："><a href="#代码片一：" class="headerlink" title="代码片一："></a>代码片一：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">function handler() &#123;</div><div class="line">  console.log(&quot;click:handler&quot;);</div><div class="line">&#125;</div><div class="line">function handler1() &#123;</div><div class="line">  console.log(&quot;mouseenter:handler1&quot;);</div><div class="line">&#125;</div><div class="line">$(&quot;ul&quot;).on(&quot;mouseenter&quot;,handler1);</div><div class="line">$(&quot;ul&quot;).on(&quot;click&quot;,&quot;li&quot;,handler);</div><div class="line"></div><div class="line">/*1.off（events,selector,handler） */</div><div class="line">/*</div><div class="line">当selector指定解绑id为#one时候是无法解绑该对象上的事件的，点击的时候还能触发事件，而将</div><div class="line">selector修改为绑定时候的li则能够解绑,</div><div class="line">*/</div><div class="line">$(&quot;ul&quot;).off(&quot;click&quot;,&quot;#one&quot;,handler); </div><div class="line">$(&quot;ul&quot;).off(&quot;click&quot;,&quot;li&quot;,handler);</div><div class="line"></div><div class="line">/*2.off( events , selector  )*/</div><div class="line">/*</div><div class="line">会解绑ul上面事件类型为click而事件处理程序为handler的事件,ul上面的click--handler1事件没</div><div class="line">有被解绑</div><div class="line">*/</div><div class="line">$(&quot;ul&quot;).on(&quot;click&quot;,handler1);</div><div class="line">$(&quot;ul&quot;).off(&quot;click&quot;,handler);</div><div class="line"></div><div class="line">/*3.off( events )*/</div><div class="line">/*</div><div class="line">会解绑ul上面事件类型为click的事件，这时候，li的click事件也失灵了，因为li的click事件是</div><div class="line">由事件要素绑定在ul上面的</div><div class="line">*/</div><div class="line">$(&quot;ul&quot;).off(&quot;click&quot;);</div><div class="line"></div><div class="line">/*4.off()*/</div><div class="line">/*</div><div class="line">会解绑ul上面所有的事件，以及后代有事件要素绑定在ul上的事件比如</div><div class="line">$(&quot;li&quot;).on(&quot;click&quot;,handler);注释时候，点击li是没反应的，而不能解绑事件三要素都绑定早后</div><div class="line">代上面的事件比如$(&quot;li&quot;).on(&quot;click&quot;,handler)的click事件是无法通过ul解绑的</div><div class="line">*/</div><div class="line">$(&quot;li&quot;).on(&quot;click&quot;,handler);</div><div class="line">$(&quot;ul&quot;).off();</div></pre></td></tr></table></figure>
+<p>总结：我们对某个对象解绑事件的时候，<br>    a).会解绑该对象自己的事件（事件三要素都是绑定在该对象上面的事件）；<br>    b).会解绑事件三要素某些要素绑定在该对象上面的事件，比如我们指定了ul为li的click事件<br>    代理，这时候事件源绑定在li上面，事件类型及事件处理程序是在ul上面，当我们通过ul或者<br>    li,解绑click事件的时候，会相应地解绑ul或者li上面的事件要素</p>
 
-b).seletor:选择器，用于查找到事件触发对象(事件源)，可选，没有指定的时候默认事件
-源是调用on函数的对象;
-
-c).data:可选，传入的数据存放在e.data中，再间接传入到事件处理函数之中；
-
-d).handler:事件处理函数，可以用false代替；
-</code></pre><h3 id="代码片公用的html"><a href="#代码片公用的html" class="headerlink" title="代码片公用的html"></a>代码片公用的html</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;ul style=&quot;width: 400px;height: 400px;border: solid 1px #000&quot;&gt;</div><div class="line">        &lt;li&gt;1&lt;/li&gt;</div><div class="line">        &lt;li id=&quot;two&quot;&gt;2&lt;/li&gt;</div><div class="line">        &lt;li&gt;3&lt;/li&gt;</div><div class="line">        &lt;li&gt;4&lt;/li&gt;</div><div class="line">        &lt;li&gt;5&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
-<h3 id="代码片一："><a href="#代码片一：" class="headerlink" title="代码片一："></a>代码片一：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">        var data = &#123;</div><div class="line">            name: &quot;数据&quot;,</div><div class="line">        &#125;</div><div class="line">        function handler(e)&#123;</div><div class="line">            console.log(e.data);</div><div class="line">            console.log($(this).html());</div><div class="line">        &#125;</div><div class="line">        $(&quot;ul&quot;).on(&quot;click.one&quot;,&quot;#two&quot;,data,handler);</div><div class="line">        /*  只有点击id为two的li才会触发</div><div class="line">        输出Object &#123;name: &quot;数据&quot;&#125; </div><div class="line">         2</div><div class="line">        */</div><div class="line">        $(&quot;ul&quot;).on(&quot;click.one&quot;,data,handler);</div><div class="line">        /* 只要在ul的范围内点击就能够触发</div><div class="line">        输出 Object &#123;name: &quot;数据&quot;&#125;</div><div class="line">        &lt;li&gt;1&lt;/li&gt;</div><div class="line">        &lt;li id=&quot;two&quot;&gt;2&lt;/li&gt;</div><div class="line">        &lt;li&gt;3&lt;/li&gt;</div><div class="line">        &lt;li&gt;4&lt;/li&gt;</div><div class="line">        &lt;li&gt;5&lt;/li&gt;</div><div class="line">        */</div><div class="line">    &#125;)();</div></pre></td></tr></table></figure>
-<p>总结：<br>    1、首先如果将事件处理函数分离出来比如handler，在函数内部如果需要使用到event对象，<br>    则必须在函数声明的时候必须设置e形式参数；</p>
-<pre><code>2、e.data的输出可以知道data参数是存放在event对象中的
-
-3、对比两次绑定事件的输出：
-
-    a).第一次绑定指定了selector，那么事件源是绑定在由该s
-
-    elector查找到的DOM元素
-
-    b).第二次是绑定在调用该on函数的ul上的
-
-    c).handler函数的this指向取决于事件源是谁，即是谁触发了事件，所
-
-    以两次的$(this).html()输出不一样
-</code></pre><h2 id="2、用法二：on-eventsMap-selector-handler"><a href="#2、用法二：on-eventsMap-selector-handler" class="headerlink" title="2、用法二：on(eventsMap,selector,handler)"></a>2、用法二：on(eventsMap,selector,handler)</h2><p>B.在需要对一个或者多个对象绑定多个事件，并对应多个事件处理函数时候使用；</p>
-<h3 id="2-1、参数的含义结合代码片二分析："><a href="#2-1、参数的含义结合代码片二分析：" class="headerlink" title="2.1、参数的含义结合代码片二分析："></a>2.1、参数的含义结合代码片二分析：</h3><pre><code> a).eventsMap:一个对象（事件--事件处理函数的映射），即是对象的属性key是事件名，属
- 性值value是事件处理函数；比如
- {
-    click: handler1,
-    mouseenter: handler2
- }
-
-b).seletor:选择器，用于查找到事件触发对象(事件源)，可选，没有指定的时候默认事件
-源是调用on函数的对象;
-
-c).data:可选，传入的数据存放在e.data中，再间接传入到事件处理函数之中；
-</code></pre><h3 id="代码片二："><a href="#代码片二：" class="headerlink" title="代码片二："></a>代码片二：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var eventsMap = &#123;</div><div class="line">    click: handler1,</div><div class="line">    mouseenter: handler2</div><div class="line">&#125;</div><div class="line">function handler1(e)&#123;</div><div class="line">    console.log(&quot;click&quot;);</div><div class="line">&#125;</div><div class="line">function handler2(e)&#123;</div><div class="line">    console.log(&quot;mouseenter&quot;);</div><div class="line">&#125;</div><div class="line">$(&quot;ul&quot;).on(eventsMap);</div></pre></td></tr></table></figure>
-<h2 id="3-通过事件三要素和冒泡来理解on-函数绑定事件"><a href="#3-通过事件三要素和冒泡来理解on-函数绑定事件" class="headerlink" title="3.通过事件三要素和冒泡来理解on()函数绑定事件"></a>3.通过事件三要素和冒泡来理解on()函数绑定事件</h2><h3 id="3-1、什么是事件三要素？"><a href="#3-1、什么是事件三要素？" class="headerlink" title="3.1、什么是事件三要素？"></a>3.1、什么是事件三要素？</h3><pre><code>a).事件源：是指触发事件的对象；
-b).事件类型：
-c).事件处理程序：事件触发后所做的一系列操作；
-
-A.完成事件需要以上三个要素缺一不可
-</code></pre><h3 id="3-2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，"><a href="#3-2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，" class="headerlink" title="3.2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，"></a>3.2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，</h3><h3 id="一直持续到document"><a href="#一直持续到document" class="headerlink" title="一直持续到document"></a>一直持续到document</h3><h3 id="3-3、简述on-绑定事件："><a href="#3-3、简述on-绑定事件：" class="headerlink" title="3.3、简述on()绑定事件："></a>3.3、简述on()绑定事件：</h3><pre><code>a).selector是指定了事件源，也就是触发事件的对象，不管有没有指定selector,
-events,handler都是绑定在调用on()函数的对象上面的，，
-
-b).没有指定selector时候，事件源就是on函数调用者，
-
-c).指定selector时候，事件源就是选择到的那个后代对象，所以只有当在事件源上触发
-事件的时候，事件就会向上冒泡直到on函数调用者，此时执行事件处理程序，在没有选择到
-的对象上面无法触发事件，包括绑定了事件类型和事件处理程序的on调用对象，因为这些对
-象缺少了事件源要素
-
-d).其实代理就是将事件三要素的事件源指定为后代元素，事件类型，事件处理程序则绑定在
-当前对象上面
-</code></pre>
       
     </div>
     
@@ -322,13 +275,13 @@ d).其实代理就是将事件三要素的事件源指定为后代元素，事�
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/12/06/jQuery中on-函数的用法笔记/">jQuery中on()函数的用法笔记</a></p>
+        <p><span>本文标题:</span><a href="/2016/12/07/jQuery-off-函数用法笔记/">jQuery.off()函数用法笔记</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
-        <p><span>发布时间:</span>2016年12月06日 - 23时28分</p>
-        <p><span>最后更新:</span>2016年12月07日 - 15时50分</p>
+        <p><span>发布时间:</span>2016年12月07日 - 16时30分</p>
+        <p><span>最后更新:</span>2016年12月07日 - 16时32分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/12/06/jQuery中on-函数的用法笔记/" title="jQuery中on()函数的用法笔记">http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/07/jQuery-off-函数用法笔记/" title="jQuery.off()函数用法笔记">http://Jxisme520.github.io/2016/12/07/jQuery-off-函数用法笔记/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/07/jQuery-off-函数用法笔记/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -341,18 +294,9 @@ d).其实代理就是将事件三要素的事件源指定为后代元素，事�
 
 <nav id="article-nav">
   
-    <a href="/2016/12/07/jQuery中事件命名空间/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          jQuery中事件命名空间
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/06/JavaScript-RegExp方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JavaScript RegExp方法</div>
+    <a href="/2016/12/07/jQuery中事件命名空间/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jQuery中事件命名空间</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -363,7 +307,7 @@ d).其实代理就是将事件三要素的事件源指定为后代元素，事�
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery中on-函数的用法笔记"><span class="toc-number">1.</span> <span class="toc-text">jQuery中on()函数的用法笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、用法一：on-events-selector-data-handler-，"><span class="toc-number">1.1.</span> <span class="toc-text">1、用法一：on(events,selector,data,handler)，</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、参数的含义结合代码片一："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1、参数的含义结合代码片一：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片公用的html"><span class="toc-number">1.1.2.</span> <span class="toc-text">代码片公用的html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片一："><span class="toc-number">1.1.3.</span> <span class="toc-text">代码片一：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、用法二：on-eventsMap-selector-handler"><span class="toc-number">1.2.</span> <span class="toc-text">2、用法二：on(eventsMap,selector,handler)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、参数的含义结合代码片二分析："><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1、参数的含义结合代码片二分析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片二："><span class="toc-number">1.2.2.</span> <span class="toc-text">代码片二：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-通过事件三要素和冒泡来理解on-函数绑定事件"><span class="toc-number">1.3.</span> <span class="toc-text">3.通过事件三要素和冒泡来理解on()函数绑定事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1、什么是事件三要素？"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1、什么是事件三要素？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2、事件冒泡：就是元素触发某个类型的事件，元素的上一层父元素也会触发该事件类型，</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一直持续到document"><span class="toc-number">1.3.3.</span> <span class="toc-text">一直持续到document</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3、简述on-绑定事件："><span class="toc-number">1.3.4.</span> <span class="toc-text">3.3、简述on()绑定事件：</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery-off-函数用法笔记"><span class="toc-number">1.</span> <span class="toc-text">jQuery.off()函数用法笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、off-函数的用法：off（events-selector-handler），"><span class="toc-number">1.1.</span> <span class="toc-text">1、off()函数的用法：off（events,selector,handler），</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#接受三个参数："><span class="toc-number">1.1.1.</span> <span class="toc-text">接受三个参数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、off（events-selector-handler）："><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1、off（events,selector,handler）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体指定了需要解绑事件的对象，事件的类型，和解绑的事件处理程序，限制的条件较多，能"><span class="toc-number">1.1.3.</span> <span class="toc-text">具体指定了需要解绑事件的对象，事件的类型，和解绑的事件处理程序，限制的条件较多，能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#够最准确地解绑事件；"><span class="toc-number">1.1.4.</span> <span class="toc-text">够最准确地解绑事件；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2、-off-events-selector"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.2、.off( events , selector  ):</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定了具体指定了需要解绑事件的对象，事件的类型，会使得所有属于该事件类型的事件处理程序被解绑；"><span class="toc-number">1.1.6.</span> <span class="toc-text">指定了具体指定了需要解绑事件的对象，事件的类型，会使得所有属于该事件类型的事件处理程序被解绑；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3、off-events-会解绑调用对象的指定事件类型，"><span class="toc-number">1.1.7.</span> <span class="toc-text">1.3、off(events):会解绑调用对象的指定事件类型，</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4、off-会解绑调用对象的所有绑定事件比如以下的mouseenter，click"><span class="toc-number">1.1.8.</span> <span class="toc-text">1.4、off(): 会解绑调用对象的所有绑定事件比如以下的mouseenter，click</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html代码："><span class="toc-number">1.1.9.</span> <span class="toc-text">html代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码片一："><span class="toc-number">1.1.10.</span> <span class="toc-text">代码片一：</span></a></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -411,7 +355,7 @@ d).其实代理就是将事件三要素的事件源指定为后代元素，事�
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/12/06/jQuery中on-函数的用法笔记/" data-title="jQuery中on()函数的用法笔记" data-url="http://Jxisme520.github.io/2016/12/06/jQuery中on-函数的用法笔记/"></div>
+    <div class="ds-thread" data-thread-key="2016/12/07/jQuery-off-函数用法笔记/" data-title="jQuery.off()函数用法笔记" data-url="http://Jxisme520.github.io/2016/12/07/jQuery-off-函数用法笔记/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -434,13 +378,11 @@ d).其实代理就是将事件三要素的事件源指定为后代元素，事�
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/12/07/jQuery中事件命名空间/" title="上一篇: jQuery中事件命名空间">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2016/12/06/JavaScript-RegExp方法/" title="下一篇: JavaScript RegExp方法">
+            <a href="/2016/12/07/jQuery中事件命名空间/" title="下一篇: jQuery中事件命名空间">
                 <i class="fa fa-angle-right"></i>
             </a>
         
