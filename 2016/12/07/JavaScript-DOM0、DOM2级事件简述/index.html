@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://Jxisme520.github.io/2016/12/07/JavaScript-DOM0、DOM2级事件简述/index.html">
 <meta property="og:site_name" content="Hexo博客">
 <meta property="og:description" content="JavaScript DOM0、DOM2级事件简述">
-<meta property="og:updated_time" content="2016-12-07T11:55:11.000Z">
+<meta property="og:updated_time" content="2016-12-07T12:19:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript DOM0、DOM2级事件简述">
 <meta name="twitter:description" content="JavaScript DOM0、DOM2级事件简述">
@@ -258,24 +258,23 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="JavaScript-DOM0、DOM2级事件简述"><a href="#JavaScript-DOM0、DOM2级事件简述" class="headerlink" title="JavaScript DOM0、DOM2级事件简述"></a>JavaScript DOM0、DOM2级事件简述</h1><p>1、DOM0级事件：on+事件类型</p>
-<pre><code>1.1、在html行内直接绑定，
+        <h1 id="JavaScript-DOM0、DOM2级事件简述"><a href="#JavaScript-DOM0、DOM2级事件简述" class="headerlink" title="JavaScript DOM0、DOM2级事件简述"></a>JavaScript DOM0、DOM2级事件简述</h1><h2 id="1、DOM0级事件：on-事件类型"><a href="#1、DOM0级事件：on-事件类型" class="headerlink" title="1、DOM0级事件：on+事件类型"></a>1、DOM0级事件：on+事件类型</h2><pre><code>1.1、在html行内直接绑定，
 
 1.2、在js中绑定
 </code></pre><p>A.DOM0级事件和DOM0级事件相互之间会覆盖，比如以下代码执行后弹出jsDOM0级，js中绑定的事件<br>覆盖了行内绑定的事件；</p>
-<p>2、DOM2级事件：<br>            addEventListener(events,handler,boolean)，<br>            removeEventListener（events,handler）</p>
-<pre><code>2.1、参数events是以空格间隔的事件类型，handler是事件处理程序，boolean表示是冒泡还
+<h2 id="2、DOM2级事件："><a href="#2、DOM2级事件：" class="headerlink" title="2、DOM2级事件："></a>2、DOM2级事件：</h2><h2 id="addEventListener-events-handler-boolean-，"><a href="#addEventListener-events-handler-boolean-，" class="headerlink" title="addEventListener(events,handler,boolean)，"></a>addEventListener(events,handler,boolean)，</h2><h2 id="removeEventListener（events-handler）"><a href="#removeEventListener（events-handler）" class="headerlink" title="removeEventListener（events,handler）"></a>removeEventListener（events,handler）</h2><pre><code>2.1、参数events是以空格间隔的事件类型，handler是事件处理程序，boolean表示是冒泡还
 是捕获，true表示捕获，flase表冒泡，默认冒泡。
 </code></pre><p>B.DOM2级绑定事件不会覆盖自身，和DOM0级也能共存；</p>
-<p>3、解绑事件：</p>
-<pre><code>3.1、DOM0级事件是将onclick属性指向一个函数，所以只需要修改onclick属性指向null即可
+<h2 id="3、解绑事件："><a href="#3、解绑事件：" class="headerlink" title="3、解绑事件："></a>3、解绑事件：</h2><pre><code>3.1、DOM0级事件是将onclick属性指向一个函数，所以只需要修改onclick属性指向null即可
 
 3.2、DOM2级事件是为对象添加了监听某种事件的监听器，解绑的时候由removeEventListener
 需要指定事件的类型，和事件处理程序的名字，因此这个方法无法解绑匿名事件处理函数的事
 件。因为具体指定了事件和事件处理函数，所以同个事件类型的不同事件处理程序不相互影响
 ，从程序最后的输出可以验证
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">/* 1.1*/</div><div class="line">&lt;button onclick=&quot;alert(&apos;行内DOM0级&apos;)&quot;&gt;点击&lt;/button&gt;</div><div class="line"></div><div class="line">(function()&#123;</div><div class="line">    /*1.2*/</div><div class="line">    var btn = document.getElementsByTagName(&apos;button&apos;)[0];</div><div class="line">    console.log(btn);</div><div class="line">    btn.onclick = function()&#123;</div><div class="line">      console.log(&apos;jsDOM0级&apos;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /* 2.1 */</div><div class="line">    btn.addEventListener(&apos;click&apos;,dom2);</div><div class="line">    btn.addEventListener(&apos;click&apos;,dom2Plus);</div><div class="line">    function dom2()&#123;</div><div class="line">      console.log(&apos;DOM2级事件&apos;);</div><div class="line">    &#125;</div><div class="line">    function dom2Plus()&#123;</div><div class="line">      console.log(&apos;DOM2级事件Plus&apos;);</div><div class="line">    &#125;</div><div class="line">    /* 输出结果：</div><div class="line">    jsDOM0级</div><div class="line">    DOM2级事件</div><div class="line">    DOM2级事件Plus</div><div class="line">    */</div><div class="line">    </div><div class="line">    /* 以下代码解绑了DOM0和DOM2事件*/</div><div class="line">    /* 3.1*/</div><div class="line">    btn.onclick = null;</div><div class="line">    /* 3.2 */</div><div class="line">    btn.removeEventListener(&apos;click&apos;,dom2);</div><div class="line">    </div><div class="line">    /* 输出：</div><div class="line">    DOM2级事件Plus</div><div class="line">    */</div><div class="line">  &#125;)();</div></pre></td></tr></table></figure>
 
+3.3、DOM0级和DOM2共存，但是执行顺序是按照绑定先后进行的，比如以下代码中先绑定DOM2
+事件，再绑定DOM0事件结果先执行DOM2再执行DOM0
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">/* 1.1*/</div><div class="line">&lt;button onclick=&quot;alert(&apos;行内DOM0级&apos;)&quot;&gt;点击&lt;/button&gt;</div><div class="line"></div><div class="line">(function()&#123;</div><div class="line">    /*1.2*/</div><div class="line">    var btn = document.getElementsByTagName(&apos;button&apos;)[0];</div><div class="line">    /* 2.1 */</div><div class="line">    btn.addEventListener(&apos;click&apos;,dom2);</div><div class="line">    btn.addEventListener(&apos;click&apos;,dom2Plus);</div><div class="line">    btn.onclick = function()&#123;</div><div class="line">      console.log(&apos;jsDOM0级&apos;);</div><div class="line">    &#125;</div><div class="line">    function dom2()&#123;</div><div class="line">      console.log(&apos;DOM2级事件&apos;);</div><div class="line">    &#125;</div><div class="line">    function dom2Plus()&#123;</div><div class="line">      console.log(&apos;DOM2级事件Plus&apos;);</div><div class="line">    &#125;</div><div class="line">    /* 输出结果：</div><div class="line">    DOM2级事件</div><div class="line">    DOM2级事件Plus</div><div class="line">    jsDOM0级</div><div class="line">    */</div><div class="line">    </div><div class="line">    /* 以下代码解绑了DOM0和DOM2事件*/</div><div class="line">    /* 3.1*/</div><div class="line">    btn.onclick = null;</div><div class="line">    /* 3.2 */</div><div class="line">    btn.removeEventListener(&apos;click&apos;,dom2);</div><div class="line">    </div><div class="line">    /* 输出：</div><div class="line">    DOM2级事件Plus</div><div class="line">    */</div><div class="line">  &#125;)();</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -286,7 +285,7 @@
         <p><span>本文标题:</span><a href="/2016/12/07/JavaScript-DOM0、DOM2级事件简述/">JavaScript DOM0、DOM2级事件简述</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
         <p><span>发布时间:</span>2016年12月07日 - 19时47分</p>
-        <p><span>最后更新:</span>2016年12月07日 - 19时55分</p>
+        <p><span>最后更新:</span>2016年12月07日 - 20时19分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/12/07/JavaScript-DOM0、DOM2级事件简述/" title="JavaScript DOM0、DOM2级事件简述">http://Jxisme520.github.io/2016/12/07/JavaScript-DOM0、DOM2级事件简述/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/07/JavaScript-DOM0、DOM2级事件简述/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -315,7 +314,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript-DOM0、DOM2级事件简述"><span class="toc-number">1.</span> <span class="toc-text">JavaScript DOM0、DOM2级事件简述</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript-DOM0、DOM2级事件简述"><span class="toc-number">1.</span> <span class="toc-text">JavaScript DOM0、DOM2级事件简述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、DOM0级事件：on-事件类型"><span class="toc-number">1.1.</span> <span class="toc-text">1、DOM0级事件：on+事件类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、DOM2级事件："><span class="toc-number">1.2.</span> <span class="toc-text">2、DOM2级事件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#addEventListener-events-handler-boolean-，"><span class="toc-number">1.3.</span> <span class="toc-text">addEventListener(events,handler,boolean)，</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#removeEventListener（events-handler）"><span class="toc-number">1.4.</span> <span class="toc-text">removeEventListener（events,handler）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、解绑事件："><span class="toc-number">1.5.</span> <span class="toc-text">3、解绑事件：</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
