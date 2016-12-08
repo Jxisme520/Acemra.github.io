@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript form表单笔记 | Hexo博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JavaScript form表单笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript form表单笔记">
+<meta property="og:url" content="http://Jxisme520.github.io/2016/12/08/JavaScript-form表单笔记/index.html">
+<meta property="og:site_name" content="Hexo博客">
+<meta property="og:description" content="JavaScript form表单笔记">
+<meta property="og:updated_time" content="2016-12-08T11:29:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript form表单笔记">
+<meta name="twitter:description" content="JavaScript form表单笔记">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Acmera</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/tags/随笔">随笔</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=rJ_cmJ2fnZ2Vnezd3YLPw8E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/Jxisme520" title="github">github</a>
+                            
+                                <a class="fl QQ" target="_blank" href="#" title="QQ">QQ</a>
+                            
+                                <a class="fl wechat" target="_blank" href="#" title="wechat">wechat</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/DOM0事件/" style="font-size: 10px;">DOM0事件</a> <a href="/tags/DOM2事件/" style="font-size: 10px;">DOM2事件</a> <a href="/tags/JavaSciprt/" style="font-size: 10px;">JavaSciprt</a> <a href="/tags/JavaScript/" style="font-size: 17.5px;">JavaScript</a> <a href="/tags/JvaScript/" style="font-size: 10px;">JvaScript</a> <a href="/tags/RegExp/" style="font-size: 10px;">RegExp</a> <a href="/tags/context/" style="font-size: 10px;">context</a> <a href="/tags/exec/" style="font-size: 10px;">exec()</a> <a href="/tags/extend/" style="font-size: 10px;">extend()</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/isPlain/" style="font-size: 10px;">isPlain()</a> <a href="/tags/jQuery/" style="font-size: 20px;">jQuery</a> <a href="/tags/off-函数/" style="font-size: 10px;">off()函数</a> <a href="/tags/on-用法/" style="font-size: 10px;">on()用法</a> <a href="/tags/selector/" style="font-size: 10px;">selector</a> <a href="/tags/test/" style="font-size: 10px;">test()</a> <a href="/tags/var/" style="font-size: 10px;">var</a> <a href="/tags/上下文/" style="font-size: 10px;">上下文</a> <a href="/tags/事件命名空间/" style="font-size: 10px;">事件命名空间</a> <a href="/tags/事件解绑/" style="font-size: 10px;">事件解绑</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/作用域链/" style="font-size: 10px;">作用域链</a> <a href="/tags/全局变量/" style="font-size: 10px;">全局变量</a> <a href="/tags/参数含义/" style="font-size: 10px;">参数含义</a> <a href="/tags/声明/" style="font-size: 10px;">声明</a> <a href="/tags/局部变量/" style="font-size: 10px;">局部变量</a> <a href="/tags/执行环境/" style="font-size: 10px;">执行环境</a> <a href="/tags/源码/" style="font-size: 15px;">源码</a> <a href="/tags/结构/" style="font-size: 10px;">结构</a> <a href="/tags/表单/" style="font-size: 10px;">表单</a> <a href="/tags/解析/" style="font-size: 12.5px;">解析</a> <a href="/tags/逗号表达式/" style="font-size: 10px;">逗号表达式</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://jxisme520.github.io//">name</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱运动、爱交友、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Acmera</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Acmera</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/tags/随笔">随笔</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=rJ_cmJ2fnZ2Vnezd3YLPw8E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/Jxisme520" title="github">github</a>
+                    
+                        <a class="QQ" target="_blank" href="#" title="QQ">QQ</a>
+                    
+                        <a class="wechat" target="_blank" href="#" title="wechat">wechat</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-JavaScript-form表单笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/08/JavaScript-form表单笔记/" class="article-date">
+      <time datetime="2016-12-08T11:25:52.000Z" itemprop="datePublished">2016-12-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript form表单笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/form/">form</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/表单/">表单</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="JavaScript-form表单笔记"><a href="#JavaScript-form表单笔记" class="headerlink" title="JavaScript form表单笔记"></a>JavaScript form表单笔记</h1><p><strong>公用代码片</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">&lt;form id=&quot;formId&quot; action=&quot;#&quot; name=&quot;myForm&quot;&gt;</div><div class="line"></div><div class="line">    &lt;input id=&quot;textId&quot; type=&quot;text&quot; name=&quot;myText&quot; value=&quot;Text&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;input id=&quot;passwordId&quot; type=&quot;password&quot; name=&quot;myPassword&quot;  value=&quot;Password&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;input id=&quot;radioId&quot; type=&quot;radio&quot; name=&quot;Radio&quot; value=&quot;Radio&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;input id=&quot;checkboxId&quot; type=&quot;checkbox&quot; name=&quot;Checkbox&quot; value=&quot;Checkbox&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;textarea id=&quot;textareaId&quot; name=&quot;myTextarea&quot; value=&quot;Textarea&quot;&gt;&lt;/textarea&gt;</div><div class="line">    </div><div class="line">    &lt;input id=&quot;fileId&quot; type=&quot;file&quot; name=&quot;myFile&quot; value=&quot;File&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;input id=&quot;hiddenId&quot; type=&quot;hidden&quot; name=&quot;myHidden&quot; value=&quot;Hidden&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;input id=&quot;imageId&quot; type=&quot;image&quot; name=&quot;myImage&quot; value=&quot;Image&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;input id=&quot;resetId&quot; type=&quot;reset&quot; name=&quot;myReset&quot; value=&quot;Reset&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;input id=&quot;submitId&quot; type=&quot;submit&quot; name=&quot;mySubmit&quot; value=&quot;Submit&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;input id=&quot;res&quot; type=&quot;reset&quot; name=&quot;mySubmit&quot; value=&quot;Reset&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;input id=&quot;sub&quot; type=&quot;submit&quot; name=&quot;mySubmit&quot; value=&quot;Submit&quot;&gt;</div><div class="line">    </div><div class="line">    &lt;button type=&quot;submit&quot;&gt;button&lt;/button&gt;</div><div class="line">    </div><div class="line">    &lt;select name=&quot;mySelect&quot; id=&quot;select&quot;&gt;</div><div class="line">        &lt;option value=&quot;option&quot;&gt;第一个&lt;/option&gt;</div><div class="line">    &lt;/select&gt; </div><div class="line">    </div><div class="line">    &lt;span&gt;&lt;/span&gt;</div><div class="line">    </div><div class="line">&lt;/form&gt;</div><div class="line"></div><div class="line">&lt;form action=&quot;#&quot; name=&quot;myForm&quot;&gt;&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>A、form对象（js中是HTMLFormElement对象）：</strong></p>
+<p><strong>1、js获取form对象的方法</strong></p>
+<p>1.1、class，tag，id获取</p>
+<p>1.2、forms属性获取页面的所有表单</p>
+<pre><code>1.2.1、再由索引获取
+
+1.2.2、name属性值获取，有时候有多个form的name值一样只返回第一个，区别域表单字段的
+name属性获取
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/* A.1.2.1 */</div><div class="line">var myForm = document.forms[0];</div><div class="line">    </div><div class="line">/* A.1.2.2 */</div><div class="line">var myForm = document.forms[&apos;myForm&apos;];</div><div class="line">console.log(myForm);</div><div class="line">/* 输出名字为myForm的表单中的第一个*/</div></pre></td></tr></table></figure>
+<p><strong>2、form的属性</strong></p>
+<p>2.1、acceptCharset:服务器能够处理的字符集;</p>
+<p>2.2、action:接受请求的URL;等价于HTML的action特性，其实就是设置url时候方式不同，在HTML<br>直接在form标签中action=”url”,而如果我们在js中设置时候就得通过myForm.action=url来设置；</p>
+<p>2.3、elements：表单中所有控件的集合（HTMLCollection）；</p>
+<p>2.4、enctype:请求的编码类型；等价于HTML中的enctype特性；</p>
+<p>2.5、length:表单中控件的数量；</p>
+<p>2.6、method:要发送的HTTP请求类型，通常是“get”和“post”,等价HTML的method特性</p>
+<p>2.7、name: 表单的名称，等价HTML的name特性;</p>
+<p>2.8、target: 值为发送请求和接受响应窗口的名称，等价于HTML的target特性；</p>
+<p>2.9、reset():函数执行会将所有表单域重置为默认值；其实在input的type=”reset”的元素其实就<br>是绑定了一个点击事件，执行reset()函数，使得表单被重置；</p>
+<p>2.10、submit(): 提交表单，</p>
+<p><strong>B、form控件：</strong></p>
+<p><strong>1、js获取表控件的方法</strong></p>
+<p>1.1、class,tag,id获取</p>
+<p>1.2、elements属性获取所有控件，注意不是表单元素获取不到，比如公用的代码片form中的span,<br>button可以</p>
+<pre><code>1.2.1、再索引获取
+
+1.2.2、name属性值获取，如果有多个表单元素，那么返回的是一个NodeList集合，需要再通
+过索引获取到具体的元素,type=“image”的input不能通过name属性获取；看代码片二
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"> /* B.1.2.1*/</div><div class="line">var myInput = myForm.elements[0];</div><div class="line">    </div><div class="line">/* B.1.2.2 */</div><div class="line">console.log(myForm.elements[&apos;myText&apos;]);</div><div class="line"></div><div class="line">console.log(myForm.elements[&apos;myPassword&apos;]);</div><div class="line"></div><div class="line">console.log(myForm.elements[&apos;myRadio&apos;]);</div><div class="line"></div><div class="line">console.log(myForm.elements[&apos;myCheckbox&apos;]);</div><div class="line"></div><div class="line">console.log(myForm.elements[&apos;myTextarea&apos;]);</div><div class="line"></div><div class="line">console.log(myForm.elements[&apos;myFile&apos;]);</div><div class="line"></div><div class="line">console.log(myForm.elements[&apos;myHidden&apos;]);</div><div class="line"></div><div class="line">console.log(myForm.elements[&apos;myReset&apos;]);</div><div class="line">/* 以上都能输出获取到得表单元素*/</div><div class="line"></div><div class="line">console.log(myForm.elements[&apos;myImage&apos;]); </div><div class="line">/* type=&quot;image&quot;的input由name获取不到输出 undefined */</div><div class="line"></div><div class="line">console.log(myForm.elements[&apos;mySubmit&apos;]); </div><div class="line">/* </div><div class="line">多个同名的input被获取到存到集合里面输出 </div><div class="line">[input#submitId, input#res, input#sub, value: &quot;&quot;] */</div></pre></td></tr></table></figure>
+<p><strong>C、表单提交：</strong></p>
+<p>1、通过HTML设置并且提交：</p>
+<pre><code>1.1、表单的提交：默认为get方式，可以通过在form标签中method=&quot;post&quot;设置，
+
+1.2、如何提交表单，
+
+    1.2.1、点击submit和image按钮可以提交表单，或者某些表单元素获得焦点的时候按
+    enter键也会提交(不可行的是file，textarea其他可以，我在谷歌测试的)
+
+    1.2.2、通过自己定义的提交按钮比如将button标签的type设置为submit 
+
+    1.2.3、表单提交的时候会在URL后面添加以下查询字符串
+
+        1.2.3.1 按image按钮提交
+
+            a.指定了空间的name和value
+                ?myText=Text                  
+                &amp;myPassword=Password
+                &amp;myTextarea=
+                &amp;myFile=
+                &amp;myHidden=Hidden
+                &amp;myImage.x=8
+                &amp;myImage.y=9
+                &amp;myImage=Image
+                &amp;mySelect=option#
+
+            b.只指定了name
+                ?myText=
+                &amp;myPassword=
+                &amp;myTextarea=
+                &amp;myFile=
+                &amp;myHidden=
+                &amp;myImage.x=12
+                &amp;myImage.y=9
+                &amp;mySelect=第一个#
+
+            c.没指定name,
+                ?x=8&amp;y=9#
+
+        1.2.3.2 按submit按钮提交
+            a.指定了空间的name和value
+                ?myText=Text
+                &amp;myPassword=Password
+                &amp;myTextarea=
+                &amp;myFile=
+                &amp;myHidden=Hidden
+                &amp;mySubmit=Submit
+                &amp;mySelect=option#
+
+                b.只指定了name
+                    ?myText=
+                    &amp;myPassword=
+                    &amp;myTextarea=
+                    &amp;myFile=
+                    &amp;myHidden=
+                    &amp;mySubmit=提交
+                    &amp;mySelect=第一个#   
+
+                c.没指定name,
+                ?#
+
+
+        1.2.3.3 按button按钮提交
+            a.指定了空间的name和value
+                ?myText=Text
+                &amp;myPassword=Password
+                &amp;myTextarea=
+                &amp;myFile=
+                &amp;myHidden=Hidden
+                &amp;myButton=button
+                &amp;mySelect=option#
+
+            b.只指定了name
+                ?myText=
+                &amp;myPassword=
+                &amp;myTextarea=
+                &amp;myFile=
+                &amp;myHidden=
+                &amp;myButton=#
+                &amp;mySelect=第一个#
+
+            c.没指定name,
+            ?#
+
+        总结：
+
+            a.以上输出，可以知道表单空间的name属性作为查询字符串数据的name,比如
+        ?myText=Text，没有指定name的控件无法将value值添加到查询字符串送到后台
+
+            b.控件的value属性是查询字符串的value,对于textarea提交的值是两标签之间
+            的值,对于select值为选中的option的value,如果该option没有value值，则传
+            option标签的值
+
+            c.由image，button,submit哪个按钮进行提交，就会将相应控件的name=value也
+            添加到查询字符串，使用image提交会附加image.x=&amp;image.y=的字符串，x,y表
+            示图片按钮被点击的坐标；
+
+            d.radio,checkbox没有选中不会将其value值传到后台,file没有选中文件时候，
+            传到后台的值为空，reset按钮值不会传到后台
+
+
+2、通过js设置并且提交
+
+2.1、从查询字符串可以看出js提交表单和点击type类型为image，submit按钮提交的区别就是
+不用点击提交按钮，并且没有传送提交按钮的数据；
+
+**js表单提交代码片**
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var myForm = document.forms[&apos;myForm&apos;];</div><div class="line">/* 设置表单提交的方式*/</div><div class="line">myForm.method = &quot;get&quot;;</div><div class="line">/* 调用表单提交方法submit*/</div><div class="line">myForm.submit();</div><div class="line"></div><div class="line">/* 查询字符串</div><div class="line">?myText=Text</div><div class="line">&amp;myPassword=Password</div><div class="line">&amp;myTextarea=</div><div class="line">&amp;myFile=</div><div class="line">&amp;myHidden=Hidden#</div><div class="line">*/</div></pre></td></tr></table></figure>
+</code></pre><p><strong>D、表单及表单元素事件：</strong>    </p>
+<p><strong>1、form事件</strong></p>
+<p>1.1、submit事件：表单提交前时候会触发submit事件，可以监听submit事件来进行表单验证，或者<br>做某些操作比如阻止表单提交；</p>
+<p>1.2、reset：表单重置的时候会触发</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/* reset和submit事件*/</div><div class="line">myForm.addEventListener(&apos;submit&apos;, function(e) &#123;</div><div class="line">        console.log(&apos;提交&apos;);</div><div class="line">&#125;);</div><div class="line">myForm.onreset = function()&#123;</div><div class="line">        console.log(&apos;重置&apos;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong>2、form元素事件</strong></p>
+<p>1.1、focus：当前字段获得焦点的时候触发</p>
+<p>1.2、blur：当前字段失去焦点的时候触发</p>
+<p>1.3、change：对于input,textarea在失去焦点且值改变的时候触发，select元素在选项改变的时<br>候触发</p>
+<p><strong>text和textarea</strong></p>
+<p><strong>1.1、相同</strong></p>
+<pre><code>a.两者的值都是存放在value属性里面，
+
+b.maxlength：指定文本框可以接受的最大字符数量,字符数量达到该值就无法继续输入
+
+c.select事件：选择文本框中的文本时候就会触发，对应的方法select()被执行时候选中文
+本框的所有内容
+
+d.获取
+</code></pre><p><strong>1.2、不同</strong></p>
+<pre><code>a.text是单行文本，获取焦点时按enter键会提交表单，value属性就是输入框里面的值,size
+属性是用来设置input框能显示多少个字符决定文本框的宽度，通过width也可以设置
+
+b.textarea是多行文本，获取焦点时按enter键会不提交表单，而是换行，value属性并不是
+输入框中的值，输入框的值是两个标签之间的文本，col设置列数（设置行的显示），row设
+置行数（设置列的显示），同样的决定了文本框的宽度高，也可以由width和height设置，一
+般获取textarea标签中间的文本可以通过value获取，不要通过innerHTML获取（原因在以下代
+码中）
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&lt;form id=&quot;formId&quot; action=&quot;#&quot; name=&quot;myForm&quot; value=&quot;myForm&quot;&gt;</div><div class="line"></div><div class="line">        &lt;input id=&quot;myText&quot; type=&quot;text&quot; value=&quot;text&quot; size=&quot;30&quot; maxlength=&quot;20&quot;&gt;</div><div class="line">        </div><div class="line">        &lt;textarea name=&quot;&quot; id=&quot;myTextarea&quot; cols=&quot;10&quot; rows=&quot;2&quot; value=&quot;textarea&quot; </div><div class="line">        size=&quot;10&quot; maxlength=&quot;20&quot;&gt;默认值&lt;/textarea&gt;</div><div class="line"></div><div class="line">&lt;/form&gt;</div><div class="line"></div><div class="line">var myForm = document.forms[&apos;myForm&apos;];</div><div class="line"></div><div class="line">/*1.2、a text，输出 text*/</div><div class="line">var myText = myForm.elements[0];</div><div class="line">console.log(myText.value);  </div><div class="line"></div><div class="line">myText.select();</div><div class="line"></div><div class="line">myText.onselect = function()&#123;</div><div class="line">    console.log(&quot;text is selected&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">/*1.2、b textarea，输出 默认值*/</div><div class="line">var myTextarea = myForm.elements[1];</div><div class="line">console.log(myTextarea.value);  </div><div class="line"></div><div class="line">myTextarea.onselect = function()&#123;</div><div class="line">    console.log(&quot;textarea is selected&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">myTextarea.value = &quot;修改后&quot;;</div><div class="line">/*1.2、b textarea 输出 默认值，说明修改textarea的值并没有修改innerHTML的值*/</div><div class="line">console.log(myTextarea.innerHTML);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/08/JavaScript-form表单笔记/">JavaScript form表单笔记</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
+        <p><span>发布时间:</span>2016年12月08日 - 19时25分</p>
+        <p><span>最后更新:</span>2016年12月08日 - 19时29分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/08/JavaScript-form表单笔记/" title="JavaScript form表单笔记">http://Jxisme520.github.io/2016/12/08/JavaScript-form表单笔记/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/08/JavaScript-form表单笔记/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/07/JavaScript-DOM0、DOM2级事件简述/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript DOM0、DOM2级事件简述</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript-form表单笔记"><span class="toc-number">1.</span> <span class="toc-text">JavaScript form表单笔记</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/12/08/JavaScript-form表单笔记/" data-title="JavaScript form表单笔记" data-url="http://Jxisme520.github.io/2016/12/08/JavaScript-form表单笔记/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"acremra"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/12/07/JavaScript-DOM0、DOM2级事件简述/" title="下一篇: JavaScript DOM0、DOM2级事件简述">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/08/JavaScript-form表单笔记/">JavaScript form表单笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/07/JavaScript-DOM0、DOM2级事件简述/">JavaScript DOM0、DOM2级事件简述</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/07/jQuery-off-函数用法笔记/">jQuery.off()函数用法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/07/jQuery中事件命名空间/">jQuery中事件命名空间</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/jQuery中on-函数的用法笔记/">jQuery中on()函数的用法笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/JavaScript-RegExp方法/">JavaScript RegExp方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/05/jQuery-selector-context-函数参数含义/">jQuery(selector,context)函数参数含义</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/05/jQuery-总体源码结构笔记/">jQuery 总体源码结构笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/30/jQuery-extend/">jQuery.extend()源码解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/26/jQuery-isPlain/">jQuery.isPlain()</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/07/JavaScript-var声明变量和直接用标识符初始化的细节/">JavaScript var声明变量和直接用标识符初始化的细节</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/JavaScript-执行环境、作用域和作用域链/">理解JavaScript 作用域、执行环境和作用域链</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/05/JavaScript-逗号表达式/">JavaScript 逗号表达式笔记</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Acmera
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >访问次数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
