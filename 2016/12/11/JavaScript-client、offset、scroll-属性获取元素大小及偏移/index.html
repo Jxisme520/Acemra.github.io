@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>jQuery 总体源码结构笔记 | Hexo博客</title>
+  <title>JavaScript client、offset、scroll 属性获取元素大小及偏移 | Hexo博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简述jQuery总体结构，以及个人的一些理解，记下笔记">
+  <meta name="description" content="参考《JavaScript高级程序设计》，对JavaScript client、offset、scroll 属性获取元素大小及偏移进行总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery 总体源码结构笔记">
-<meta property="og:url" content="http://Jxisme520.github.io/2016/12/05/jQuery-总体源码结构笔记/index.html">
+<meta property="og:title" content="JavaScript client、offset、scroll 属性获取元素大小及偏移">
+<meta property="og:url" content="http://Jxisme520.github.io/2016/12/11/JavaScript-client、offset、scroll-属性获取元素大小及偏移/index.html">
 <meta property="og:site_name" content="Hexo博客">
-<meta property="og:description" content="简述jQuery总体结构，以及个人的一些理解，记下笔记">
-<meta property="og:updated_time" content="2016-12-05T05:14:39.000Z">
+<meta property="og:description" content="参考《JavaScript高级程序设计》，对JavaScript client、offset、scroll 属性获取元素大小及偏移进行总结">
+<meta property="og:updated_time" content="2016-12-11T15:26:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery 总体源码结构笔记">
-<meta name="twitter:description" content="简述jQuery总体结构，以及个人的一些理解，记下笔记">
+<meta name="twitter:title" content="JavaScript client、offset、scroll 属性获取元素大小及偏移">
+<meta name="twitter:description" content="参考《JavaScript高级程序设计》，对JavaScript client、offset、scroll 属性获取元素大小及偏移进行总结">
   
     <link rel="alternative" href="/atom.xml" title="Hexo博客" type="application/atom+xml">
   
@@ -216,11 +216,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-jQuery-总体源码结构笔记" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-JavaScript-client、offset、scroll-属性获取元素大小及偏移" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/05/jQuery-总体源码结构笔记/" class="article-date">
-      <time datetime="2016-12-05T04:59:18.000Z" itemprop="datePublished">2016-12-05</time>
+      <a href="/2016/12/11/JavaScript-client、offset、scroll-属性获取元素大小及偏移/" class="article-date">
+      <time datetime="2016-12-11T15:24:04.000Z" itemprop="datePublished">2016-12-11</time>
 </a>
     </div>
   
@@ -233,7 +233,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      jQuery 总体源码结构笔记
+      JavaScript client、offset、scroll 属性获取元素大小及偏移
     </h1>
   
 
@@ -242,13 +242,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/jQuery/">jQuery</a>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码/">源码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/结构/">结构</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/clientWidth/">clientWidth</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/offsetWidth/">offsetWidth</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scrollWidth/">scrollWidth</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -258,9 +258,78 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>#jQuery 总体源码结构笔记</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">// 最外层是一个自调用函数</div><div class="line">( function(window,undefined)&#123;</div><div class="line">   // 声明一个jQuery构造函数,这里的自调用函数也是为了降低与其他模块的耦合程度</div><div class="line">   var jQuery = ( function()&#123;</div><div class="line">        // 将jQuery构造函数覆盖改成实例</div><div class="line">        var jQuery = function()&#123;</div><div class="line">            // 说明我们使用的jQuery对象并不是直接使用jQuery构造函数构造的，只是两者的原型一样而已</div><div class="line">            return new jQuery.fn.init();   </div><div class="line">        &#125;</div><div class="line">        // 将jQuery.prototype简写为jQuery.fn</div><div class="line">        jQuery.fn = jQuery.prototype = &#123;</div><div class="line">            constructor = jQuery,</div><div class="line">            // 初始化jQuery对象</div><div class="line">            init: function()&#123;...&#125;</div><div class="line">        &#125;</div><div class="line">        // 构造jQuery实例的时候重新制定了init函数的原型</div><div class="line">        jQuery.fn.init.prototype = jQuery.fn;</div><div class="line">        jQuery.extend = jQuery.fn.extend = function()&#123;...&#125;;</div><div class="line">        jQuery.extend(&#123;...&#125;);</div><div class="line">        return jQuery;</div><div class="line">   &#125; )();</div><div class="line">   // 添加全局变量$和jQuery,两者都是一个实例，并不是构造函数</div><div class="line">    window.jQuery = window.$ = jQuery;  </div><div class="line">&#125; )(window);</div></pre></td></tr></table></figure>
-<p>总结： 1.在函数jQuery()函数内部使用new创建一个实例；<br>       2.jQuery实例不是直接有jQuery函数构造，而是通过一个init函数间接实现，为了不实例化jQuery函数中那些在内部使用的方法和属性；<br>       3.对一些太长的标识符进行简缩比如jQuery.fn,$;<br>       4.将jQuery实例付给全局变量jQuery;<br>       5.传入window对象，变成局部变量，来缩短查找window对象时候搜索的作用域链长度;<br>       6.设置形参undefined可以起到缩短搜索的作用域链，而不传入参数是因为，外部的undefined可能存在被个人修改，不传入时它的默认值就是undefined，这一最保险。</p>
+        <h1 id="JavaScript-client、offset、scroll-属性获取元素大小及偏移"><a href="#JavaScript-client、offset、scroll-属性获取元素大小及偏移" class="headerlink" title="JavaScript client、offset、scroll 属性获取元素大小及偏移"></a>JavaScript client、offset、scroll 属性获取元素大小及偏移</h1><p><strong>1.元素偏移量属性:每次访问需要重新计算</strong></p>
+<p>A.offsetHeight和offsetWidth可以得到元素的宽度和高度<br>  offetHeight(offsetWidth) = padding + height(width) + border;</p>
+<p>B.offsetLeft和offsetTop: </p>
+<pre><code>a.offsetParent该元素计算offsetLeft（offsetTop）值所选的参考对象和parentNode不等价
+
+b.该元素有定位则参考的对象为最近的带有定位最近带有定位的父元素没有定位则参考他的父
+元素，所以offsetParent有可能不是直接包含他的父元素
+
+c.值是从参考元素边框内侧开始不包含border包含padding，
+
+d.使用offsetLeft(offsetTop)结合offsetParent来计算元素在页面的偏移量，比如计算元素
+相对页面的左偏移量
+
+/*以下的函数在《JavaScript高级程序设计第三版》321页*/
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function getELementLeft(element) &#123;</div><div class="line">    var actualLeft = element.offsetLeft;</div><div class="line">    var offsetParent = element.offsetParent;</div><div class="line">    </div><div class="line">    while(offsetParent !== null) &#123;</div><div class="line">        actualLeft += current.offsetLeft;</div><div class="line">        offsetParent = offsetParent.offsetParent;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    return actualLeft;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><p>D.offsetLeft(offsetTop)与style.left(style.top)区别，结合以下代码分析：</p>
+<pre><code>a.如果盒子没有定位style.left获取不到值输出空，而offsetLeft则输出盒子离body左内边框
+的距离
+
+b.offet.Width返回值默认以像素为单位的数值不带px，style.width返回字符窜带px
+
+c.style.left只能取到行内的left属性值，如果没有指定只会返回空字符串,offsetLeft获
+取则没有这个限制
+
+d.style.left可以读写，offsetLeft只读
+</code></pre><p>/<em>代码片一</em>/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">div &#123;</div><div class="line">        margin: 0;</div><div class="line">        padding: 0; </div><div class="line">        left: 10px;</div><div class="line">        width: 100px;</div><div class="line">        height: 100px;</div><div class="line">        border: solid 1px red;</div><div class="line">    &#125;</div><div class="line">.hasPosition &#123;</div><div class="line">    position: absolute;</div><div class="line">    overflow: scroll;</div><div class="line">&#125;</div><div class="line">&lt;div class=&quot;hasPosition&quot; style=&quot;left: 20px; &quot;&gt;</div><div class="line">    是的哈是个大家爱好是大家爱帅哥的骄傲是更好的骄傲啥感觉多少噶绝对是噶价格多少家阿哥大家哈就打击和大家按实际萨嘎撒谎个等级撒大家爱喝酒打架后多久啊回到家阿嘎时间过得</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div class=&quot;noPosition&quot; style=&quot; &quot;&gt;</div><div class="line">    是的哈是个大家爱好是大家爱帅哥的骄傲是更好的骄傲啥感觉多少噶绝对是噶价格多少家阿哥大家哈就打击和大家按实际萨嘎撒谎个等级撒大家爱喝酒打架后多久啊回到家阿嘎时间过得</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    var hasPosition = document.querySelector(&apos;.hasPosition&apos;);</div><div class="line">    console.log(hasPosition.offsetLeft); // 20</div><div class="line">    console.log(hasPosition.style.left); // 20px</div><div class="line">    var noPosition = document.querySelector(&apos;.noPosition&apos;);</div><div class="line">    console.log(noPosition.offsetLeft); // 8</div><div class="line">    console.log(noPosition.style.left); // &quot;&quot; 空</div><div class="line"></div><div class="line">    /*3.元素内容滚动大小*/</div><div class="line">    console.log(noPosition.scrollHeight); // 308</div><div class="line">    console.log(hasPosition.scrollHeight); // 374</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>2.客户区大小：值指的是元素内容及其内边距所占据的空间大小,不包括滚动条</strong></p>
+<p>A.clientWidth(clientHeight) = padding + width(height);</p>
+<p>B.可以用来获取视口的大小：</p>
+<p>/<em> 以下的函数是对《JavaScript高级程序设计第三版》323页函数的修改得到获取视口的兼容性函数</em>/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">function getViewport() &#123;</div><div class="line">    /*W3C浏览器*/</div><div class="line">    if(window.innerWidth) &#123;</div><div class="line">        return &#123;</div><div class="line">            width: window.innerWidth;</div><div class="line">            height: window.innerHeight;</div><div class="line">        &#125;</div><div class="line">    &#125;else if(document.compatMode == &apos;BackCompat&apos;) &#123;</div><div class="line">        /*文档模式为标准模式*/</div><div class="line">        return &#123;</div><div class="line">            width: document.documentElement.clientWidth;</div><div class="line">            height: document.documentELement.clientHeight;</div><div class="line">        &#125;</div><div class="line">    &#125;else &#123;</div><div class="line">         /*文档模式为混杂模式*/</div><div class="line">        return &#123;</div><div class="line">            width: document.body.clientWidth;</div><div class="line">            height: document.body.clientHeight;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>3.元素内容滚动大小结合上面代码片一</strong></p>
+<p>A.scrollWidth(scrollHeight):</p>
+<pre><code>a.没有滚动条：值为元素内容的宽度（高度）
+
+b.存在滚动条：值？暂时不知道怎么算，在谷歌上面测试了看不出值的规律
+
+c.html元素被当成是在web浏览器视口中滚动元素，因此带垂直滚动条并不带横向滚动条的页
+面高度为:
+
+ (1).标准模式：document.documentElement.scrollHeight;
+
+ (2).混杂模式：document.body.scrollHeight
+
+d.不带滚动条的页面大小clientWidth(clientWidth)和scrollWidth(scrollHeight)关系在不
+同浏览器中是不同的（标准模式）IE混合模式只需将以下的documentElemnt换成body：
+
+ (1).这里和视口的联系在于没有滚动条说明内容区域有可能的最大值为视口大小，有滚动条
+ 页面的内容大小就超出视口的大小，两者就没有明确联系
+
+ (2).Firefox 中documentElement两组属性始终都是相等的，大小代表的是文档内容区域的大
+ 小,而不是视口的大小
+
+ (3).Opera,Safari3.1,及更高版本、Chrome中的scrollWidth(scrollHeight)等于视口的大小
+ ，clientWidth(clientHeight)等于文档内容区域的大小
+
+ (4).IE（在标准模式）中scrollWidth(scollHeight)等于文档区域的大小，
+ clientWidth(clientWidth)等于视口的大小
+</code></pre><p>B.scrollLeft(scrollTop):被隐藏在可视内容区域左边（上边）的像素数，通过设置该属性值可以<br>改变元素的的滚动位置,比如以下函数就是设重置元素的滚动状态回到最初的状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function resetScrollTop(element) &#123;</div><div class="line">    if(element.scrollTop != 0) &#123;</div><div class="line">        element.scrollTop = 0;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>4.确定元素的大小</strong></p>
+<p>A.思路:获得元素在相对视口的left,top,right,bottom，视口的元素坐标又是和页面原始坐标相同，通过left(top)和right(bottom)的差值来计算元素的宽高，包含边框</p>
+<pre><code>a.W3C：页面的原始坐标是（0，0）即视口的原始坐标为（0，0）W3C提供了一个getBoundingC
+lientRect()函数来获取以上属性值
+
+b.IE8以下：页面的原始坐标（2,2）即视口的原始坐标为（2，2）,所以需要自己封装函数来
+获取元素属性,IE8使用以上**元素偏移属性中的函数**getElementLeft()函数和
+getElementTop()以上没有封装getElementLeft()一样用来取得元素相对页面的top或left值
+
+c.right和bottom参考文档在左上角的原始坐标的话，就和CSS中的right,bottom不相同，也即
+是right值是从页面的最左端算起，不是在最有端来算得
+</code></pre><p>/<em>《JavaScript高级程序设计第三版》325页的函数</em>/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">function getBoundingClientRect(element) &#123;</div><div class="line"></div><div class="line">    var scrollTop = document.documentELement.scrollTop;</div><div class="line">    var scrollLeft = document.documentELement.scrollLeft;</div><div class="line">    </div><div class="line">    if(element.getBoundingClientRect) &#123;</div><div class="line">        /*</div><div class="line">        a.将left,right,top,bottom属性组成的对象放到函数的offset属性中，</div><div class="line">        b.以下代码是实现懒加载，因为在某个浏览器里面我们只需要初始化一次offset值就可以</div><div class="line">        c.offset是用来准确获取元素在W3C浏览器中页面滚动相对视口的位置</div><div class="line">        */</div><div class="line">        if(typeof arguments.callee.offset != &apos;number&apos;) &#123;</div><div class="line">        </div><div class="line">            /*以下是通过创建一个div实例来矫正再通过四个属性中的top属性来矫正*/</div><div class="line">            var tem = document.creatElement(&apos;div&apos;);</div><div class="line">            document.body.appendChild(temp);</div><div class="line">            </div><div class="line">            /*</div><div class="line">            a.减去页面scrolltop是因为页面可能是被滚动了，</div><div class="line">            b.避免页面滚动后得重新调用该函数</div><div class="line">            */</div><div class="line">            arguments.callee.offset = -temp.getBoundingClientRect().top - scrolltop;</div><div class="line">            temp = null;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        var sect = element.getBoundingClientRect();</div><div class="line">        var offset = arguments.callee.offset;</div><div class="line">        </div><div class="line">        return &#123;</div><div class="line">            left: rect.left + offset;</div><div class="line">            right: rect.right + offset;</div><div class="line">            top: rect.top + offset;</div><div class="line">            bottom: rect.bottom + offset;</div><div class="line">        &#125;;</div><div class="line">    &#125;else &#123;</div><div class="line">        /*以上元素偏移属性中的函数*/</div><div class="line">        var actualLeft = getElementLeft(element);</div><div class="line">        var actualTop = getElementTop(element);</div><div class="line">        </div><div class="line">        return &#123;</div><div class="line">            left: actualLeft - srollLeft;</div><div class="line">            right: actualLeft + element.offsetWidth - srollLeft;</div><div class="line">            top: actualTop - srollTop;</div><div class="line">            bottom: actualTop + element.offsetHeight - srollTop;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>参考书籍：《JavaScript高级程序设计第三版》</p>
 
       
     </div>
@@ -269,13 +338,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/12/05/jQuery-总体源码结构笔记/">jQuery 总体源码结构笔记</a></p>
+        <p><span>本文标题:</span><a href="/2016/12/11/JavaScript-client、offset、scroll-属性获取元素大小及偏移/">JavaScript client、offset、scroll 属性获取元素大小及偏移</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Acmera 的个人博客">Acmera</a></p>
-        <p><span>发布时间:</span>2016年12月05日 - 12时59分</p>
-        <p><span>最后更新:</span>2016年12月05日 - 13时14分</p>
+        <p><span>发布时间:</span>2016年12月11日 - 23时24分</p>
+        <p><span>最后更新:</span>2016年12月11日 - 23时26分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/12/05/jQuery-总体源码结构笔记/" title="jQuery 总体源码结构笔记">http://Jxisme520.github.io/2016/12/05/jQuery-总体源码结构笔记/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/05/jQuery-总体源码结构笔记/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/11/JavaScript-client、offset、scroll-属性获取元素大小及偏移/" title="JavaScript client、offset、scroll 属性获取元素大小及偏移">http://Jxisme520.github.io/2016/12/11/JavaScript-client、offset、scroll-属性获取元素大小及偏移/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Jxisme520.github.io/2016/12/11/JavaScript-client、offset、scroll-属性获取元素大小及偏移/　　作者: Acmera" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -288,18 +357,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/12/05/jQuery-selector-context-函数参数含义/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          jQuery(selector,context)函数参数含义
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/11/30/jQuery-extend/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jQuery.extend()源码解析</div>
+    <a href="/2016/12/08/JavaScript-form表单笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript form表单笔记</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -310,7 +370,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript-client、offset、scroll-属性获取元素大小及偏移"><span class="toc-number">1.</span> <span class="toc-text">JavaScript client、offset、scroll 属性获取元素大小及偏移</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -358,7 +418,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/12/05/jQuery-总体源码结构笔记/" data-title="jQuery 总体源码结构笔记" data-url="http://Jxisme520.github.io/2016/12/05/jQuery-总体源码结构笔记/"></div>
+    <div class="ds-thread" data-thread-key="2016/12/11/JavaScript-client、offset、scroll-属性获取元素大小及偏移/" data-title="JavaScript client、offset、scroll 属性获取元素大小及偏移" data-url="http://Jxisme520.github.io/2016/12/11/JavaScript-client、offset、scroll-属性获取元素大小及偏移/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -381,13 +441,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/12/05/jQuery-selector-context-函数参数含义/" title="上一篇: jQuery(selector,context)函数参数含义">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2016/11/30/jQuery-extend/" title="下一篇: jQuery.extend()源码解析">
+            <a href="/2016/12/08/JavaScript-form表单笔记/" title="下一篇: JavaScript form表单笔记">
                 <i class="fa fa-angle-right"></i>
             </a>
         
